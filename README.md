@@ -8,12 +8,11 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-HireLens_App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://share.streamlit.io/deploy?repository=Aryan8182/Hirelens-ai-resume-analyzer&branch=main&mainModule=app.py)
-[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Aryan8182/Hirelens-ai-resume-analyzer&branch=main&mainModule=app.py)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-HireLens_App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://hirelens-ai-resume-analyzer.streamlit.app/)
 
 > **HireLens** is a next-generation Applicant Tracking System (ATS) and candidate evaluation platform powered by Deep Learning, Sentence-Transformers (`all-MiniLM-L6-v2`), and Natural Language Processing (NLP).
 
-[🚀 1-Click Live Deploy Link](https://share.streamlit.io/deploy?repository=Aryan8182/Hirelens-ai-resume-analyzer&branch=main&mainModule=app.py) • [📖 Project Synopsis](PROJECT_SYNOPSIS.md) • [🐛 Report Bug](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/issues)
+[🚀 Live Web Application Demo](https://hirelens-ai-resume-analyzer.streamlit.app/) • [📖 Project Synopsis](PROJECT_SYNOPSIS.md) • [🐛 Report Bug](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/issues)
 
 </div>
 
