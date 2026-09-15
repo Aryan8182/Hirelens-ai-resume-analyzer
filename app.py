@@ -109,6 +109,7 @@ st.markdown("""
         margin-bottom: 20px !important;
     }
 
+    /* Main Select Input Box */
     div[data-baseweb="select"] {
         background-color: #0F172A !important;
         border-radius: 14px !important;
@@ -119,7 +120,7 @@ st.markdown("""
         border: 2px solid rgba(255, 255, 255, 0.25) !important;
         border-radius: 14px !important;
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
         box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4) !important;
     }
 
@@ -130,7 +131,8 @@ st.markdown("""
 
     div[data-baseweb="select"] * {
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
+        background-color: transparent !important;
     }
 
     div[data-baseweb="select"] svg {
@@ -138,37 +140,68 @@ st.markdown("""
         color: #FFFFFF !important;
     }
 
-    /* Floating Dropdown Popover & Options Menu */
+    /* Floating Dropdown Popover & Options Menu (FORCE TRANSPARENT INNER DIVS & WHITE TEXT) */
     div[data-baseweb="popover"],
     div[data-baseweb="menu"],
-    ul[role="listbox"] {
+    ul[role="listbox"],
+    div[role="listbox"] {
         background-color: #0F172A !important;
         border: 2px solid #818CF8 !important;
         border-radius: 14px !important;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85) !important;
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9) !important;
+        overflow: hidden !important;
     }
 
+    /* Force all child elements inside popover menu (nested divs, spans) to be transparent with white text */
+    div[data-baseweb="popover"] *,
+    div[data-baseweb="menu"] *,
+    ul[role="listbox"] *,
+    div[role="listbox"] * {
+        background-color: transparent !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        font-size: 0.98rem !important;
+        opacity: 1 !important;
+    }
+
+    /* Individual List Options */
     ul[role="listbox"] li,
+    div[role="listbox"] li,
     div[data-baseweb="menu"] li,
-    div[data-baseweb="menu"] [role="option"] {
+    div[data-baseweb="menu"] [role="option"],
+    li[role="option"],
+    div[role="option"],
+    [data-baseweb="option"] {
         background-color: #0F172A !important;
         color: #FFFFFF !important;
         font-weight: 700 !important;
         font-size: 0.98rem !important;
         padding: 12px 18px !important;
+        margin: 2px 0 !important;
+        cursor: pointer !important;
         transition: all 0.2s ease !important;
     }
 
+    /* Hover & Active / Selected Option State */
     ul[role="listbox"] li:hover,
     ul[role="listbox"] li[aria-selected="true"],
     div[data-baseweb="menu"] li:hover,
     div[data-baseweb="menu"] [role="option"]:hover,
-    div[data-baseweb="menu"] [aria-selected="true"] {
+    div[data-baseweb="menu"] [aria-selected="true"],
+    li[role="option"]:hover,
+    li[role="option"][aria-selected="true"],
+    div[role="option"]:hover,
+    div[role="option"][aria-selected="true"],
+    [data-baseweb="option"]:hover {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
         color: #FFFFFF !important;
     }
 
-    ul[role="listbox"] li * {
+    ul[role="listbox"] li:hover *,
+    li[role="option"]:hover *,
+    div[role="option"]:hover *,
+    div[data-baseweb="menu"] [role="option"]:hover * {
+        background-color: transparent !important;
         color: #FFFFFF !important;
     }
 
