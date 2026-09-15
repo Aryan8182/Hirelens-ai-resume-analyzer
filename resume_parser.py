@@ -89,24 +89,45 @@ def clean_text(text: str) -> str:
 
 def extract_contact_info(raw_text: str) -> dict:
     """
-    Extracts email, phone number, LinkedIn profile, and GitHub profile from raw resume text using regular expressions.
+    Extracts email, phone number, LinkedIn profile, and GitHub profile from raw resume text using robust non-capturing regular expressions.
     """
-    # Regex patterns
-    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
-    phone_pattern = r'(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}'
-    linkedin_pattern = r'(linkedin\.com/in/[a-zA-Z0-9_-]+)'
-    github_pattern = r'(github\.com/[a-zA-Z0-9_-]+)'
+    # 1. Email Extraction
+    email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+    emails = [m.group(0).strip() for m in re.finditer(email_pattern, raw_text)]
 
-    emails = re.findall(email_pattern, raw_text)
-    phones = re.findall(phone_pattern, raw_text)
-    linkedins = re.findall(linkedin_pattern, raw_text, re.IGNORECASE)
-    githubs = re.findall(github_pattern, raw_text, re.IGNORECASE)
+    # 2. Phone Extraction (Full 10-13 digit numbers with country code/formatting)
+    phone_pattern = r'(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?)?\d{3,4}[\s.-]?\d{3,4}'
+    phone_matches = [m.group(0).strip() for m in re.finditer(phone_pattern, raw_text)]
+    valid_phones = [p for p in phone_matches if 10 <= len(re.sub(r'\D', '', p)) <= 13]
+
+    # 3. LinkedIn Profile URL Extraction
+    linkedin_pattern = r'(?:https?://)?(?:www\.)?linkedin\.com/in/[a-zA-Z0-9\-_/]+'
+    linkedins = [m.group(0).strip() for m in re.finditer(linkedin_pattern, raw_text, re.IGNORECASE)]
+
+    # 4. GitHub Profile URL Extraction
+    github_pattern = r'(?:https?://)?(?:www\.)?github\.com/[a-zA-Z0-9\-_/]+'
+    githubs = [m.group(0).strip() for m in re.finditer(github_pattern, raw_text, re.IGNORECASE)]
+
+    # Normalize URLs
+    linkedin_url = "Not Found"
+    if linkedins:
+        url = linkedins[0].rstrip('/.')
+        if not url.startswith('http'):
+            url = f"https://{url}"
+        linkedin_url = url
+
+    github_url = "Not Found"
+    if githubs:
+        url = githubs[0].rstrip('/.')
+        if not url.startswith('http'):
+            url = f"https://{url}"
+        github_url = url
 
     return {
         "email": emails[0] if emails else "Not Found",
-        "phone": "".join(phones[0]) if phones and isinstance(phones[0], tuple) else (phones[0] if phones else "Not Found"),
-        "linkedin": f"https://{linkedins[0]}" if linkedins else "Not Found",
-        "github": f"https://{githubs[0]}" if githubs else "Not Found"
+        "phone": valid_phones[0] if valid_phones else "Not Found",
+        "linkedin": linkedin_url,
+        "github": github_url
     }
 
 
