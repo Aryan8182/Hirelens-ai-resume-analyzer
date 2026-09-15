@@ -17,8 +17,10 @@
 
 > 🌐 **LIVE WEB APPLICATION DEMO**:
 > ### 🚀 [Click Here to Launch HireLens Live Application](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+> 📊 **PowerPoint Presentation Deck**: **[Download HireLens_Presentation.pptx](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/raw/main/HireLens_Presentation.pptx)**
 > 
 > **HireLens** is live and fully accessible in your web browser! Experience real-time SBERT semantic evaluation, multi-domain skill radar charts, and batch candidate ranking.
+
 
 
 ---
@@ -183,9 +185,12 @@ Hirelens-ai-resume-analyzer/
 ├── ats_matcher.py              # SBERT Embedding Generator & Match Engine
 ├── recommendation_engine.py    # Formatting Audit & Actionable Advice Engine
 ├── db_manager.py               # SQLite History Logger & Clear Log Manager
+├── HireLens_Presentation.pptx  # 12-Slide Widescreen PowerPoint Presentation
 ├── README.md                   # Repository Documentation
 └── requirements.txt            # Python Dependencies
 ```
+
+
 
 
 ---
