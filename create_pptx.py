@@ -560,7 +560,7 @@ def create_deck():
     p2.space_after = Pt(20)
 
     p3 = tf10.add_paragraph()
-    p3.text = "👥 Presented By: Aryan (Roll: 28240533) & Nitish (Roll: 28240529)\n🏛️ Panipat Institute of Engineering & Technology (PIET)\n🌐 GitHub: https://github.com/Aryan8182/Hirelens-ai-resume-analyzer\n🚀 Live Demo App: https://hirelens-ai-resume-analyzer.streamlit.app/"
+    p3.text = "👥 Presented By: Aryan (Roll: 28240533) & Nitish (Roll: 28240529)\n🏛️ Panipat Institute of Engineering & Technology (PIET)\n🌐 GitHub: https://github.com/Aryan8182/Hirelens-ai-resume-analyzer\n🚀 Live Demo App: https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/"
     p3.font.size = Pt(14)
     p3.font.color.rgb = COLOR_INDIGO
 
