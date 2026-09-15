@@ -3,8 +3,8 @@
 Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
-Description: Ultra-high contrast Vercel/Linear dark theme with explicit CSS
-             overrides for file uploader instructions, text area labels & inputs.
+Description: Bulletproof file uploader dropzone contrast CSS override,
+             ultra-high contrast dark theme, and interactive ATS engine.
 =============================================================================
 """
 
@@ -59,24 +59,87 @@ st.markdown("""
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
     /* ==========================================================================
-       LABEL & TEXT AREA HIGH CONTRAST FIXES (BRIGHT WHITE & NEON)
+       BULLETPROOF FILE UPLOADER DROPZONE CONTRAST OVERRIDE
        ========================================================================== */
-    label, p, span, small, div {
-        color: #FFFFFF !important;
+    [data-testid="stFileUploader"] {
+        margin-bottom: 20px;
     }
 
-    /* Text Area & Input Labels */
-    div[data-testid="stTextArea"] label, 
-    div[data-testid="stTextInput"] label,
-    div[data-testid="stFileUploader"] label {
+    [data-testid="stFileUploader"] label {
         color: #FFFFFF !important;
         font-size: 1.05rem !important;
         font-weight: 800 !important;
-        letter-spacing: 0.01em !important;
+        margin-bottom: 10px !important;
+        display: block !important;
+    }
+
+    /* Dropzone Outer Container */
+    [data-testid="stFileUploaderDropzone"] {
+        background-color: #0F172A !important;
+        border: 2px dashed #818CF8 !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        text-align: center !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    [data-testid="stFileUploaderDropzone"]:hover {
+        border-color: #EC4899 !important;
+        background-color: #1E1B4B !important;
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.4) !important;
+    }
+
+    /* FORCE ALL TEXT INSIDE DROPZONE TO BE BRIGHT WHITE & VISIBLE */
+    [data-testid="stFileUploader"] *,
+    [data-testid="stFileUploaderDropzone"] *,
+    [data-testid="stFileUploaderDropzoneInstructions"] *,
+    [data-testid="stFileUploaderDropzoneInstructions"] div,
+    [data-testid="stFileUploaderDropzoneInstructions"] span,
+    [data-testid="stFileUploaderDropzoneInstructions"] small {
+        color: #FFFFFF !important;
+        font-size: 0.98rem !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Small subtext (Limit 200MB per file...) */
+    [data-testid="stFileUploaderDropzoneInstructions"] small {
+        color: #E2E8F0 !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        margin-top: 6px !important;
+        display: block !important;
+    }
+
+    /* Browse files button inside dropzone */
+    [data-testid="stFileUploaderDropzone"] button {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        font-weight: 800 !important;
+        border-radius: 10px !important;
+        padding: 10px 22px !important;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
+        margin-top: 8px !important;
+    }
+    [data-testid="stFileUploaderDropzone"] button:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
+        transform: scale(1.03) !important;
+    }
+
+    /* ==========================================================================
+       TEXT AREA & INPUT FIELD CONTRAST
+       ========================================================================== */
+    div[data-testid="stTextArea"] label, 
+    div[data-testid="stTextInput"] label {
+        color: #FFFFFF !important;
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
         margin-bottom: 8px !important;
     }
 
-    /* Text Area & Input Fields */
     .stTextArea textarea, .stTextInput input {
         background: rgba(15, 23, 42, 0.95) !important;
         border: 2px solid rgba(255, 255, 255, 0.2) !important;
@@ -97,63 +160,6 @@ st.markdown("""
     .stTextArea textarea::placeholder, .stTextInput input::placeholder {
         color: #94A3B8 !important;
         opacity: 1 !important;
-    }
-
-    /* ==========================================================================
-       FILE UPLOADER INNER TEXT & CONTRAST OVERRIDES
-       ========================================================================== */
-    div[data-testid="stFileUploader"] {
-        margin-bottom: 15px;
-    }
-
-    /* File Uploader Dropzone Box */
-    div[data-testid="stFileUploaderDropzone"] {
-        background: rgba(15, 23, 42, 0.92) !important;
-        border: 2px dashed #818CF8 !important;
-        border-radius: 16px !important;
-        padding: 24px !important;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
-        transition: all 0.3s ease !important;
-    }
-    div[data-testid="stFileUploaderDropzone"]:hover {
-        border-color: #EC4899 !important;
-        background: rgba(15, 23, 42, 0.98) !important;
-        box-shadow: 0 0 35px rgba(236, 72, 153, 0.35) !important;
-    }
-
-    /* All inner text inside dropzone (Drag and drop, Limit, No file chosen) */
-    div[data-testid="stFileUploaderDropzoneInstructions"] span,
-    div[data-testid="stFileUploaderDropzoneInstructions"] small,
-    div[data-testid="stFileUploaderDropzoneInstructions"] div,
-    div[data-testid="stFileUploaderDropzone"] span,
-    div[data-testid="stFileUploaderDropzone"] small,
-    div[data-testid="stFileUploaderDropzone"] p,
-    div[data-testid="stFileUploader"] section * {
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
-        opacity: 1 !important;
-    }
-
-    /* Small limit subtext */
-    div[data-testid="stFileUploaderDropzoneInstructions"] small {
-        color: #CBD5E1 !important;
-        font-size: 0.88rem !important;
-        font-weight: 600 !important;
-    }
-
-    /* Browse Files Button inside Dropzone */
-    div[data-testid="stFileUploaderDropzone"] button {
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        font-weight: 800 !important;
-        border-radius: 10px !important;
-        padding: 10px 22px !important;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
-    }
-    div[data-testid="stFileUploaderDropzone"] button:hover {
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
-        transform: scale(1.03) !important;
     }
 
     /* ==========================================================================
