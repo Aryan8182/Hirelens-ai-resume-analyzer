@@ -1,20 +1,17 @@
 # 🔍 HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System
 
-<div align="center">
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge&logo=streamlit)](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![Sentence-Transformers](https://img.shields.io/badge/SBERT-all--MiniLM--L6--v2-7C3AED?style=for-the-badge&logo=huggingface&logoColor=white)](https://www.sbert.net/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+---
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-HireLens_App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+## 🌐 Live Working Application
+
+🚀 **Experience HireLens Live**: **[https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)**
 
 > **HireLens** is an AI-powered Applicant Tracking System (ATS) and candidate evaluation platform powered by Deep Learning, Sentence-Transformers (`all-MiniLM-L6-v2`), and Natural Language Processing (NLP).
-
-[🚀 Live Web Application Demo](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/) • [📖 Project Synopsis](PROJECT_SYNOPSIS.md) • [🐛 Report Bug](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/issues)
-
-</div>
 
 ---
 
