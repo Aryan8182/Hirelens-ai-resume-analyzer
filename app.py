@@ -635,6 +635,17 @@ def main():
     if st.sidebar.button("Load ML Engineer Preset Data", use_container_width=True):
         st.session_state["sample_loaded"] = True
 
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🎓 Academic Submission")
+    st.sidebar.markdown("""
+        **Panipat Institute of Engineering & Technology (PIET)**  
+        *B.Tech 3rd Year (AI & ML)*
+
+        👥 **Project Team**:
+        - **Aryan** (Roll No: `28240533`)
+        - **Nitish** (Roll No: `28240529`)
+    """)
+
     # Sample Data Paths
     sample_jd_path = os.path.join("sample_data", "sample_jd_ml.txt")
     sample_resume_path = os.path.join("sample_data", "sample_resume_ml.txt")

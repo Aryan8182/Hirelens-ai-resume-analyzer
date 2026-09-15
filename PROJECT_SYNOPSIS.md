@@ -1,9 +1,16 @@
 # Minor Project 1 Synopsis & Report
 
 **Title**: HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System  
+**Institution**: Panipat Institute of Engineering & Technology (PIET)  
 **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning  
-**Academic Year**: 3rd Year (Semester 5/6)  
+**Academic Year**: 3rd Year  
+
+### 👥 Project Team:
+- **Aryan** (Roll No: **28240533**)
+- **Nitish** (Roll No: **28240529**)
+
 **Live Demo URL**: [https://hirelens-ai-resume-analyzer.streamlit.app/](https://hirelens-ai-resume-analyzer.streamlit.app/)  
+**GitHub Repository**: [https://github.com/Aryan8182/Hirelens-ai-resume-analyzer](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer)  
 
 ---
 

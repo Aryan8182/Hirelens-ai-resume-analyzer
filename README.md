@@ -234,9 +234,14 @@ python -m unittest test_suite.py
 
 ---
 
-## 👤 Author & License
+## 👥 Team & Credits
 
-- **Project**: HireLens - Minor Project 1 (3rd Year B.Tech AI & ML)
+**Panipat Institute of Engineering & Technology (PIET)**  
+*Department of Artificial Intelligence & Machine Learning (B.Tech 3rd Year)*
+
+- **Aryan** (Roll No: **28240533**)
+- **Nitish** (Roll No: **28240529**)
+
 - **GitHub Repository**: [Aryan8182/Hirelens-ai-resume-analyzer](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer)
 - **Live Application**: [https://hirelens-ai-resume-analyzer.streamlit.app/](https://hirelens-ai-resume-analyzer.streamlit.app/)
 - **License**: MIT License
