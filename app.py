@@ -3,8 +3,8 @@
 Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
-Description: Ultra-modern Vercel/Linear-inspired dark glassmorphism frontend
-             with ambient neon glow, Plotly charts, and ATS analysis.
+Description: Ultra-high contrast, interactive Vercel/Linear-inspired ATS Dashboard
+             with dynamic weightage sliders, high-contrast sidebar, and Plotly charts.
 =============================================================================
 """
 
@@ -15,8 +15,8 @@ import plotly.graph_objects as go
 import os
 
 from resume_parser import parse_resume_file, extract_contact_info, clean_text
-from ats_matcher import compute_ats_score
-from skill_extractor import extract_skills_by_category
+from ats_matcher import compute_ats_score, calculate_semantic_similarity, calculate_tfidf_similarity
+from skill_extractor import extract_skills_by_category, compare_skills
 from recommendation_engine import generate_recommendations
 from db_manager import save_evaluation, get_evaluation_history
 
@@ -25,76 +25,128 @@ from db_manager import save_evaluation, get_evaluation_history
 # -----------------------------------------------------------------------------
 st.set_page_config(
     page_title="ResumeAI Engine | Next-Gen ATS Optimizer",
-    page_icon="✨",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------------------
-# ULTRA-PREMIUM FRONTEND STYLING (VERCEL / LINEAR AI AESTHETIC)
+# HIGH-CONTRAST ULTRA-PREMIUM FRONTEND STYLING (CSS)
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    /* Ambient Gradient Mesh Background */
+    /* Ambient Dark Background */
     .stApp {
-        background: #030712;
+        background: #050814;
         background-image: 
-            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-            radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 50%);
+            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.18) 0px, transparent 50%),
+            radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
         background-attachment: fixed;
-        color: #F9FAFB;
+        color: #F8FAFC !important;
     }
 
-    /* Sleek Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #030712; }
-    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #050814; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-    /* Input & Text Area Enhancements */
-    .stTextArea textarea, .stTextInput input, div[data-baseweb="select"] {
-        background: rgba(17, 24, 39, 0.75) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 14px !important;
-        color: #F3F4F6 !important;
+    /* ==========================================
+       SIDEBAR HIGH-CONTRAST VISIBILITY FIX
+       ========================================== */
+    [data-testid="stSidebar"] {
+        background-color: #0B0F1D !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] span, [data-testid="stSidebar"] p, [data-testid="stSidebar"] label {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+
+    /* Sidebar Radio Buttons High Contrast Styling */
+    div[data-testid="stRadio"] > label {
+        font-size: 1rem !important;
+        color: #F8FAFC !important;
+        font-weight: 700 !important;
+        margin-bottom: 10px !important;
+    }
+
+    div[data-testid="stRadio"] div[role="radiogroup"] > label {
+        background: rgba(30, 41, 59, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 12px !important;
+        padding: 12px 18px !important;
+        margin-bottom: 10px !important;
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
         font-size: 0.95rem !important;
+        transition: all 0.25s ease-in-out !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
+        background: rgba(99, 102, 241, 0.3) !important;
+        border-color: #818CF8 !important;
+        color: #FFFFFF !important;
+        transform: translateX(4px) !important;
+    }
+
+    /* Selected Active Navigation Card */
+    div[data-testid="stRadio"] div[role="radiogroup"] label[aria-checked="true"],
+    div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        border-color: #C084FC !important;
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
+    }
+
+    /* Input Fields & Text Areas High Contrast */
+    .stTextArea textarea, .stTextInput input {
+        background: rgba(15, 23, 42, 0.9) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 14px !important;
+        color: #FFFFFF !important;
+        font-size: 0.98rem !important;
         backdrop-filter: blur(16px);
         transition: all 0.25s ease-in-out !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
     .stTextArea textarea:focus, .stTextInput input:focus {
-        border-color: #6366F1 !important;
-        box-shadow: 0 0 25px rgba(99, 102, 241, 0.35) !important;
+        border-color: #818CF8 !important;
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.45) !important;
     }
 
-    /* Primary Glowing Button */
+    /* Primary Interactive Button */
     .stButton>button[kind="primary"], .stButton>button {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        font-weight: 800 !important;
         border: none !important;
-        border-radius: 12px !important;
-        padding: 12px 28px !important;
-        font-size: 0.95rem !important;
+        border-radius: 14px !important;
+        padding: 14px 30px !important;
+        font-size: 1rem !important;
         letter-spacing: 0.02em !important;
-        box-shadow: 0 4px 25px rgba(124, 58, 237, 0.45) !important;
+        box-shadow: 0 4px 25px rgba(124, 58, 237, 0.5) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .stButton>button:hover {
         transform: translateY(-2px) scale(1.01) !important;
-        box-shadow: 0 8px 35px rgba(124, 58, 237, 0.65) !important;
+        box-shadow: 0 8px 35px rgba(124, 58, 237, 0.75) !important;
     }
 
-    /* Hero Header Component */
+    /* Hero Header */
     .hero-wrapper {
-        position: relative;
         padding: 15px 0 10px 0;
     }
     .hero-status-pill {
@@ -103,19 +155,19 @@ st.markdown("""
         gap: 8px;
         padding: 6px 16px;
         border-radius: 30px;
-        background: rgba(99, 102, 241, 0.1);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        color: #A5B4FC;
-        font-size: 0.82rem;
-        font-weight: 600;
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        color: #C7D2FE;
+        font-size: 0.85rem;
+        font-weight: 700;
         margin-bottom: 12px;
     }
     .pulse-dot {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         background-color: #10B981;
         border-radius: 50%;
-        box-shadow: 0 0 10px #10B981;
+        box-shadow: 0 0 12px #10B981;
         animation: pulse 2s infinite;
     }
     @keyframes pulse {
@@ -124,28 +176,28 @@ st.markdown("""
         100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
     .hero-heading {
-        font-size: 3.1rem;
+        font-size: 3.2rem;
         font-weight: 800;
         line-height: 1.15;
-        background: linear-gradient(135deg, #FFFFFF 20%, #A5B4FC 60%, #E879F9 100%);
+        background: linear-gradient(135deg, #FFFFFF 20%, #A5B4FC 60%, #F472B6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         letter-spacing: -0.03em;
         margin-bottom: 6px;
     }
     .hero-sub {
-        font-size: 1.1rem;
-        color: #9CA3AF;
+        font-size: 1.15rem;
+        color: #CBD5E1;
         font-weight: 500;
         margin-bottom: 20px;
     }
 
-    /* Glass Cards */
+    /* Glass Metric Cards */
     .sexiest-card {
-        background: rgba(17, 24, 39, 0.65);
+        background: rgba(15, 23, 42, 0.75);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
         border-radius: 20px;
         padding: 24px;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
@@ -153,20 +205,20 @@ st.markdown("""
         margin-bottom: 15px;
     }
     .sexiest-card:hover {
-        border-color: rgba(168, 85, 247, 0.4);
+        border-color: rgba(168, 85, 247, 0.5);
         transform: translateY(-4px);
-        box-shadow: 0 25px 60px rgba(124, 58, 237, 0.25);
+        box-shadow: 0 25px 60px rgba(124, 58, 237, 0.3);
     }
     .card-label {
-        font-size: 0.78rem;
+        font-size: 0.82rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: #9CA3AF;
+        color: #94A3B8;
         font-weight: 700;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
     .card-value {
-        font-size: 2.6rem;
+        font-size: 2.8rem;
         font-weight: 800;
         letter-spacing: -0.03em;
         line-height: 1;
@@ -176,51 +228,45 @@ st.markdown("""
     .grad-emerald { color: #34D399; }
     .grad-pink { color: #F472B6; }
 
-    /* Interactive Badges */
+    /* Interactive Skill Badges */
     .badge-matched {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(16, 185, 129, 0.12);
-        border: 1px solid rgba(16, 185, 129, 0.4);
+        background: rgba(16, 185, 129, 0.18);
+        border: 1px solid #10B981;
         color: #34D399;
-        font-size: 0.85rem;
-        font-weight: 600;
-        padding: 6px 14px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        padding: 7px 16px;
         border-radius: 30px;
-        margin: 4px;
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+        margin: 5px;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
         transition: all 0.2s ease;
     }
     .badge-matched:hover {
-        background: rgba(16, 185, 129, 0.25);
-        transform: scale(1.03);
+        background: rgba(16, 185, 129, 0.3);
+        transform: scale(1.05);
     }
 
     .badge-missing {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(239, 68, 68, 0.12);
-        border: 1px solid rgba(239, 68, 68, 0.4);
+        background: rgba(239, 68, 68, 0.18);
+        border: 1px solid #EF4444;
         color: #FCA5A5;
-        font-size: 0.85rem;
-        font-weight: 600;
-        padding: 6px 14px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        padding: 7px 16px;
         border-radius: 30px;
-        margin: 4px;
-        box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+        margin: 5px;
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
         transition: all 0.2s ease;
     }
     .badge-missing:hover {
-        background: rgba(239, 68, 68, 0.25);
-        transform: scale(1.03);
-    }
-
-    /* Sidebar Dark Styling */
-    [data-testid="stSidebar"] {
-        background-color: #030712 !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(239, 68, 68, 0.3);
+        transform: scale(1.05);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -238,19 +284,31 @@ def main():
     st.markdown("""
         <div class="hero-wrapper">
             <div class="hero-status-pill">
-                <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine v2.4 Active
+                <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine Active
             </div>
-            <div class="hero-heading">ResumeAI ATS Engine</div>
-            <div class="hero-sub">AI-Powered Resume Screening & Skill Taxonomy Optimizer • B.Tech Minor Project 1</div>
+            <div class="hero-heading">ResumeAI Engine</div>
+            <div class="hero-sub">AI-Powered Resume Screening & Skill Taxonomy Optimizer • Minor Project 1</div>
         </div>
     """, unsafe_allow_html=True)
 
-    # Sidebar Controls
-    st.sidebar.header("⚡ Navigation & Engine Mode")
-    mode = st.sidebar.radio("Select Application Mode", ["Single Resume Evaluation", "Batch Candidate Ranking", "Evaluation History & Logs"])
+    # -----------------------------------------------------------------------------
+    # SIDEBAR CONTROLS WITH HIGH-CONTRAST NAVIGATION
+    # -----------------------------------------------------------------------------
+    st.sidebar.markdown("### ⚡ Navigation Panel")
+    mode = st.sidebar.radio(
+        "Select Application View",
+        ["🎯 Single Resume Evaluation", "🏆 Batch Candidate Ranking", "📊 Evaluation History & Logs"]
+    )
 
     st.sidebar.markdown("---")
-    st.sidebar.subheader("🚀 Demo Preset")
+    st.sidebar.markdown("### 🎛️ Dynamic Scoring Weights")
+    st.sidebar.caption("Adjust weightages to customize ATS evaluation formula live:")
+    w_semantic = st.sidebar.slider("SBERT Semantic Weight (%)", 10, 80, 45, 5)
+    w_skill = st.sidebar.slider("Skill Coverage Weight (%)", 10, 80, 35, 5)
+    w_tfidf = st.sidebar.slider("TF-IDF Keyword Weight (%)", 5, 50, 20, 5)
+
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🚀 Preset Demo Data")
     if st.sidebar.button("Load ML Engineer Preset Data", use_container_width=True):
         st.session_state["sample_loaded"] = True
 
@@ -260,11 +318,17 @@ def main():
     sample_jd_text = load_sample_file(sample_jd_path)
     sample_resume_text = load_sample_file(sample_resume_path)
 
+    # Normalize weights to sum to 1.0
+    total_w = w_semantic + w_skill + w_tfidf
+    w_sem_norm = w_semantic / total_w
+    w_skill_norm = w_skill / total_w
+    w_tfidf_norm = w_tfidf / total_w
+
     # -----------------------------------------------------------------------------
     # MODE 1: SINGLE RESUME EVALUATION
     # -----------------------------------------------------------------------------
-    if mode == "Single Resume Evaluation":
-        st.subheader("📥 Input Candidates & Job Requirements")
+    if "Single Resume Evaluation" in mode:
+        st.subheader("📥 Input Candidate Resume & Job Requirements")
         col_input1, col_input2 = st.columns(2)
 
         with col_input1:
@@ -302,22 +366,51 @@ def main():
                 return
 
             with st.spinner("Executing SBERT vector embeddings & NLP taxonomy match..."):
-                results = compute_ats_score(resume_text, jd_text)
+                # Compute individual scores
+                tfidf_score = calculate_tfidf_similarity(resume_text, jd_text)
+                semantic_score = calculate_semantic_similarity(resume_text, jd_text)
+                skill_analysis = compare_skills(resume_text, jd_text)
+                skill_score = skill_analysis["skill_coverage_pct"]
+
+                # Apply dynamic slider weight formula
+                custom_ats_score = (w_sem_norm * semantic_score) + (w_skill_norm * skill_score) + (w_tfidf_norm * tfidf_score)
+                custom_ats_score = round(max(0.0, min(100.0, custom_ats_score)), 1)
+
+                if custom_ats_score >= 80:
+                    match_grade = "Exceptional Fit"
+                elif custom_ats_score >= 65:
+                    match_grade = "Strong Fit"
+                elif custom_ats_score >= 50:
+                    match_grade = "Moderate Fit"
+                else:
+                    match_grade = "Low Fit / High Risk"
+
+                results = {
+                    "final_ats_score": custom_ats_score,
+                    "semantic_similarity_pct": semantic_score,
+                    "skill_coverage_pct": skill_score,
+                    "tfidf_similarity_pct": tfidf_score,
+                    "match_grade": match_grade,
+                    "skill_analysis": skill_analysis,
+                    "resume_skill_breakdown": extract_skills_by_category(resume_text),
+                    "jd_skill_breakdown": extract_skills_by_category(jd_text)
+                }
+
                 contact_info = extract_contact_info(resume_text)
                 recommendations = generate_recommendations(results, resume_text, contact_info)
                 save_evaluation(candidate_name, jd_title, results)
 
             # Results Section
-            st.subheader("⚡ Live Match Analytics & Intelligence")
+            st.subheader("⚡ Live Match Intelligence & Score Analytics")
 
-            # Executive Score Cards
+            # Executive Metric Cards
             m1, m2, m3, m4 = st.columns(4)
             with m1:
                 st.markdown(f"""
                     <div class="sexiest-card">
-                        <div class="card-label">Overall ATS Score</div>
+                        <div class="card-label">Custom ATS Score</div>
                         <div class="card-big-number grad-emerald">{results['final_ats_score']}%</div>
-                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Grade: <b>{results['match_grade']}</b></div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Grade: <b style="color: #34D399;">{results['match_grade']}</b></div>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -326,7 +419,7 @@ def main():
                     <div class="sexiest-card">
                         <div class="card-label">SBERT Semantic Match</div>
                         <div class="card-big-number grad-indigo">{results['semantic_similarity_pct']}%</div>
-                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Context Vectors</div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Weight: {int(w_semantic)}%</div>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -335,7 +428,7 @@ def main():
                     <div class="sexiest-card">
                         <div class="card-label">Skill Coverage</div>
                         <div class="card-big-number grad-cyan">{results['skill_coverage_pct']}%</div>
-                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Taxonomy Match</div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Weight: {int(w_skill)}%</div>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -344,7 +437,7 @@ def main():
                     <div class="sexiest-card">
                         <div class="card-label">TF-IDF Similarity</div>
                         <div class="card-big-number grad-pink">{results['tfidf_similarity_pct']}%</div>
-                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Keyword Frequency</div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Weight: {int(w_tfidf)}%</div>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -365,11 +458,11 @@ def main():
                 fig = go.Figure()
                 fig.add_trace(go.Scatterpolar(
                     r=res_counts, theta=categories, fill='toself', name='Candidate Resume',
-                    fillcolor='rgba(99, 102, 241, 0.35)', line=dict(color='#818CF8', width=2.5)
+                    fillcolor='rgba(99, 102, 241, 0.4)', line=dict(color='#818CF8', width=3)
                 ))
                 fig.add_trace(go.Scatterpolar(
                     r=jd_counts, theta=categories, fill='toself', name='Job Description',
-                    fillcolor='rgba(236, 72, 153, 0.2)', line=dict(color='#EC4899', width=2.5, dash='dash')
+                    fillcolor='rgba(236, 72, 153, 0.25)', line=dict(color='#EC4899', width=3, dash='dash')
                 ))
                 fig.update_layout(
                     template="plotly_dark",
@@ -406,7 +499,7 @@ def main():
                     st.success("No missing critical keywords!")
 
             st.markdown("---")
-            st.markdown("### 💡 AI Recommendations & ATS Formatting Audit")
+            st.markdown("### 💡 AI Recommendations & Formatting Audit")
             st.info(recommendations["summary_advice"])
 
             for rec in recommendations["recommendations"]:
@@ -418,7 +511,7 @@ def main():
     # -----------------------------------------------------------------------------
     # MODE 2: BATCH CANDIDATE RANKING
     # -----------------------------------------------------------------------------
-    elif mode == "Batch Candidate Ranking":
+    elif "Batch Candidate Ranking" in mode:
         st.subheader("👥 Batch Candidate Resume Leaderboard")
         st.write("Upload multiple candidate resumes to rank them against a single target Job Description.")
 
@@ -466,7 +559,7 @@ def main():
     # -----------------------------------------------------------------------------
     # MODE 3: EVALUATION HISTORY & LOGS
     # -----------------------------------------------------------------------------
-    elif mode == "Evaluation History & Logs":
+    elif "Evaluation History & Logs" in mode:
         st.subheader("📜 Audit History & Database Logs")
         df_hist = get_evaluation_history()
 
