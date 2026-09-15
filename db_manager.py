@@ -77,6 +77,19 @@ def get_evaluation_history() -> pd.DataFrame:
     return df
 
 
+def clear_evaluation_history():
+    """
+    Clears all evaluation records from the SQLite database.
+    """
+    init_db()
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM evaluations")
+    conn.commit()
+    conn.close()
+
+
 if __name__ == "__main__":
     init_db()
     print("Database initialized successfully.")
+

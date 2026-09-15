@@ -19,7 +19,7 @@ from resume_parser import parse_resume_file, extract_contact_info, clean_text
 from ats_matcher import compute_ats_score, calculate_semantic_similarity, calculate_tfidf_similarity
 from skill_extractor import extract_skills_by_category, compare_skills
 from recommendation_engine import generate_recommendations
-from db_manager import save_evaluation, get_evaluation_history
+from db_manager import save_evaluation, get_evaluation_history, clear_evaluation_history
 
 # -----------------------------------------------------------------------------
 # PAGE CONFIGURATION
@@ -680,6 +680,14 @@ def main():
     # -----------------------------------------------------------------------------
     elif "Evaluation History & Logs" in mode:
         st.markdown('<div class="section-header">📜 Audit History & Database Logs</div>', unsafe_allow_html=True)
+        
+        col_hist_title, col_hist_btn = st.columns([3, 1])
+        with col_hist_btn:
+            if st.button("🗑️ Clear Evaluation History", use_container_width=True):
+                clear_evaluation_history()
+                st.success("Evaluation history cleared successfully!")
+                st.rerun()
+
         df_hist = get_evaluation_history()
 
         if df_hist.empty:

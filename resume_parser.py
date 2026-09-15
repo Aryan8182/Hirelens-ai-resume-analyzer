@@ -8,10 +8,23 @@ Description: Handles extraction of clean text from PDF and DOCX resume files,
 =============================================================================
 """
 
+import sys
+import site
+if site.USER_SITE not in sys.path:
+    sys.path.append(site.USER_SITE)
+
 import re
 import io
-import pdfplumber
-from docx import Document
+
+try:
+    import pdfplumber
+except ImportError:
+    pdfplumber = None
+
+try:
+    from docx import Document
+except ImportError:
+    Document = None
 
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
