@@ -3,7 +3,10 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-FF4B4B.svg)](https://streamlit.io/)
 [![Sentence-Transformers](https://img.shields.io/badge/SBERT-all--MiniLM--L6--v2-7C3AED.svg)](https://www.sbert.net/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-HireLens%20App-FF4B4B.svg?style=for-the-badge&logo=streamlit)](https://hirelens-ai-resume-analyzer.streamlit.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> 🚀 **Live Web Application Demo**: **[https://hirelens-ai-resume-analyzer.streamlit.app/](https://hirelens-ai-resume-analyzer.streamlit.app/)**
 
 **HireLens** is an advanced, AI-powered Applicant Tracking System (ATS) and resume screening application built for recruiters and candidates. It combines **Sentence-BERT (SBERT)** dense vector embeddings, **TF-IDF keyword frequency matrices**, and an **NLP multi-domain skill taxonomy** to compute accurate, transparent candidate-job match scores.
 

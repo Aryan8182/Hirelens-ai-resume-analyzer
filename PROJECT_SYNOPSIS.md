@@ -3,6 +3,7 @@
 **Title**: HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System  
 **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning  
 **Academic Year**: 3rd Year (Semester 5/6)  
+**Live Demo URL**: [https://hirelens-ai-resume-analyzer.streamlit.app/](https://hirelens-ai-resume-analyzer.streamlit.app/)  
 
 ---
 
