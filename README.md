@@ -17,6 +17,8 @@
 
 > 🌐 **LIVE WEB APPLICATION DEMO**:
 > ### 🚀 [Click Here to Launch HireLens Live Application](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+> 📊 **PowerPoint Presentation Deck**: **[Download HireLens_Presentation.pptx](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/raw/main/HireLens_Presentation.pptx)**
+> 
 > **HireLens** is live and fully accessible in your web browser! Experience real-time SBERT semantic evaluation, multi-domain skill radar charts, and batch candidate ranking.
 
 ---
