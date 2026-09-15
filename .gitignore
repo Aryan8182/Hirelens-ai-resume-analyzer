@@ -5,4 +5,8 @@ __pycache__/
 .venv/
 .pytest_cache/
 HireLens_Viva_Defense_Notes.pdf
+create_viva_notes_pdf.py
+create_pptx.py
+headless_test.py
+
 
