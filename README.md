@@ -59,9 +59,42 @@ Corporate recruiters receive hundreds of candidate resumes for every open job po
 
 ```mermaid
 flowchart LR
-    A[📄 Upload Resume & JD] --> B[🔍 Text & Contact Parsing]
-    B --> C[🧠 SBERT & Skill Engine]
-    C --> D[📊 Live Score & Radar Dashboard]
+    subgraph Ingestion["1. Document Ingestion"]
+        A1[Candidate Resume PDF / DOCX / TXT]
+        A2[Target Job Description]
+    end
+
+    subgraph Preprocessing["2. Parsing & Entity Extraction"]
+        B1[pdfplumber & python-docx Parser]
+        B2[Regex Contact Audit Email, Phone, LinkedIn, GitHub]
+        B3[Whitespace & Text Normalization]
+    end
+
+    subgraph CoreEngine["3. Hybrid AI Match Engine"]
+        C1[SBERT Dense Embeddings 45% all-MiniLM-L6-v2]
+        C2[7-Category NLP Skill Taxonomy 35%]
+        C3[TF-IDF Term Frequency Matrix 20%]
+    end
+
+    subgraph Dashboard["4. Dashboard & Audit Output"]
+        D1[Composite ATS Score & Match Grade]
+        D2[Plotly Multi-Domain Skill Radar Chart]
+        D3[Missing Skill Gap Badges & Advice]
+        D4[SQLite History Logger ats_history.db]
+    end
+
+    A1 --> B1
+    A2 --> B3
+    B1 --> B2
+    B1 --> B3
+    B3 --> C1
+    B3 --> C2
+    B3 --> C3
+    C1 --> D1
+    C2 --> D2
+    C2 --> D3
+    C3 --> D1
+    D1 --> D4
 ```
 
 ---
