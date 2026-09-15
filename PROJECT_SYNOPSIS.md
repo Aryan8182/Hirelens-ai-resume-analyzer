@@ -9,7 +9,7 @@
 - **Aryan** (Roll No: **28240533**)
 - **Nitish** (Roll No: **28240529**)
 
-**Live Demo URL**: [https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)  
+**Live Demo URL**: [Click Me](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)  
 **GitHub Repository**: [https://github.com/Aryan8182/Hirelens-ai-resume-analyzer](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer)  
 
 ---
