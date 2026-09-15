@@ -4,6 +4,7 @@ Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
 Description: Bulletproof file uploader dropzone contrast CSS override,
+             interactive job role selector + custom input persistence,
              ultra-high contrast dark theme, and interactive ATS engine.
 =============================================================================
 """
@@ -59,88 +60,26 @@ st.markdown("""
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
     /* ==========================================================================
-       BULLETPROOF FILE UPLOADER DROPZONE CONTRAST OVERRIDE
+       LABEL & TEXT AREA HIGH CONTRAST FIXES (BRIGHT WHITE & NEON)
        ========================================================================== */
-    [data-testid="stFileUploader"] {
-        margin-bottom: 20px;
-    }
-
-    [data-testid="stFileUploader"] label {
+    label, p, span, small, div {
         color: #FFFFFF !important;
-        font-size: 1.05rem !important;
-        font-weight: 800 !important;
-        margin-bottom: 10px !important;
-        display: block !important;
     }
 
-    /* Dropzone Outer Container */
-    [data-testid="stFileUploaderDropzone"] {
-        background-color: #0F172A !important;
-        border: 2px dashed #818CF8 !important;
-        border-radius: 16px !important;
-        padding: 24px !important;
-        text-align: center !important;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    [data-testid="stFileUploaderDropzone"]:hover {
-        border-color: #EC4899 !important;
-        background-color: #1E1B4B !important;
-        box-shadow: 0 0 30px rgba(236, 72, 153, 0.4) !important;
-    }
-
-    /* FORCE ALL TEXT INSIDE DROPZONE TO BE BRIGHT WHITE & VISIBLE */
-    [data-testid="stFileUploader"] *,
-    [data-testid="stFileUploaderDropzone"] *,
-    [data-testid="stFileUploaderDropzoneInstructions"] *,
-    [data-testid="stFileUploaderDropzoneInstructions"] div,
-    [data-testid="stFileUploaderDropzoneInstructions"] span,
-    [data-testid="stFileUploaderDropzoneInstructions"] small {
-        color: #FFFFFF !important;
-        font-size: 0.98rem !important;
-        font-weight: 700 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-
-    /* Small subtext (Limit 200MB per file...) */
-    [data-testid="stFileUploaderDropzoneInstructions"] small {
-        color: #E2E8F0 !important;
-        font-size: 0.88rem !important;
-        font-weight: 600 !important;
-        margin-top: 6px !important;
-        display: block !important;
-    }
-
-    /* Browse files button inside dropzone */
-    [data-testid="stFileUploaderDropzone"] button {
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-        color: #FFFFFF !important;
-        border: none !important;
-        font-weight: 800 !important;
-        border-radius: 10px !important;
-        padding: 10px 22px !important;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
-        margin-top: 8px !important;
-    }
-    [data-testid="stFileUploaderDropzone"] button:hover {
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
-        transform: scale(1.03) !important;
-    }
-
-    /* ==========================================================================
-       TEXT AREA & INPUT FIELD CONTRAST
-       ========================================================================== */
+    /* Text Area & Input Labels */
     div[data-testid="stTextArea"] label, 
-    div[data-testid="stTextInput"] label {
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stFileUploader"] label,
+    div[data-baseweb="select"] label {
         color: #FFFFFF !important;
         font-size: 1.05rem !important;
         font-weight: 800 !important;
+        letter-spacing: 0.01em !important;
         margin-bottom: 8px !important;
     }
 
-    .stTextArea textarea, .stTextInput input {
+    /* Text Area & Input Fields */
+    .stTextArea textarea, .stTextInput input, div[data-baseweb="select"] > div {
         background: rgba(15, 23, 42, 0.95) !important;
         border: 2px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 14px !important;
@@ -160,6 +99,77 @@ st.markdown("""
     .stTextArea textarea::placeholder, .stTextInput input::placeholder {
         color: #94A3B8 !important;
         opacity: 1 !important;
+    }
+
+    /* ==========================================================================
+       BULLETPROOF FILE UPLOADER DROPZONE CONTRAST OVERRIDE
+       ========================================================================== */
+    div[data-testid="stFileUploader"] {
+        margin-bottom: 20px;
+    }
+
+    div[data-testid="stFileUploader"] label {
+        color: #FFFFFF !important;
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
+        margin-bottom: 10px !important;
+        display: block !important;
+    }
+
+    /* Dropzone Outer Container */
+    div[data-testid="stFileUploaderDropzone"] {
+        background-color: #0F172A !important;
+        border: 2px dashed #818CF8 !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        text-align: center !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    div[data-testid="stFileUploaderDropzone"]:hover {
+        border-color: #EC4899 !important;
+        background-color: #1E1B4B !important;
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.4) !important;
+    }
+
+    /* FORCE ALL TEXT INSIDE DROPZONE TO BE BRIGHT WHITE & VISIBLE */
+    div[data-testid="stFileUploader"] *,
+    div[data-testid="stFileUploaderDropzone"] *,
+    div[data-testid="stFileUploaderDropzoneInstructions"] *,
+    div[data-testid="stFileUploaderDropzoneInstructions"] div,
+    div[data-testid="stFileUploaderDropzoneInstructions"] span,
+    div[data-testid="stFileUploaderDropzoneInstructions"] small {
+        color: #FFFFFF !important;
+        font-size: 0.98rem !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Small subtext (Limit 200MB per file...) */
+    div[data-testid="stFileUploaderDropzoneInstructions"] small {
+        color: #E2E8F0 !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        margin-top: 6px !important;
+        display: block !important;
+    }
+
+    /* Browse files button inside dropzone */
+    div[data-testid="stFileUploaderDropzone"] button {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        font-weight: 800 !important;
+        border-radius: 10px !important;
+        padding: 10px 22px !important;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
+        margin-top: 8px !important;
+    }
+    div[data-testid="stFileUploaderDropzone"] button:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
+        transform: scale(1.03) !important;
     }
 
     /* ==========================================================================
@@ -448,7 +458,23 @@ def main():
             else:
                 jd_text = st.text_area("Paste Target Job Description (JD):", height=275, placeholder="Paste job requirements...")
 
-        jd_title = st.text_input("Job Role Name:", value="Machine Learning Engineer")
+        # Dynamic Job Role Selector + Custom Write-In Input
+        role_preset_options = [
+            "Machine Learning Engineer",
+            "Data Scientist",
+            "Full Stack Developer",
+            "Software Engineer",
+            "Data Engineer",
+            "DevOps Engineer",
+            "Custom Role / Write-In..."
+        ]
+
+        selected_role_preset = st.selectbox("Select or Customize Target Job Role:", role_preset_options, index=0)
+
+        if selected_role_preset == "Custom Role / Write-In...":
+            jd_title = st.text_input("Enter Custom Job Role Title:", value="AI Researcher", key="custom_role_input")
+        else:
+            jd_title = selected_role_preset
 
         st.markdown("---")
 
@@ -502,7 +528,8 @@ def main():
                     <div class="sexiest-card">
                         <div class="card-label">Custom ATS Score</div>
                         <div class="card-big-number grad-emerald">{results['final_ats_score']}%</div>
-                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Grade: <b style="color: #34D399;">{results['match_grade']}</b></div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem; margin-top: 8px;">Role: <b style="color: #E2E8F0;">{jd_title}</b></div>
+                        <div style="color: #CBD5E1; font-size: 0.88rem;">Grade: <b style="color: #34D399;">{results['match_grade']}</b></div>
                     </div>
                 """, unsafe_allow_html=True)
 
