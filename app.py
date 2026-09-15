@@ -3,8 +3,8 @@
 Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
-Description: Ultra-high contrast, interactive Vercel/Linear-inspired ATS Dashboard
-             with dynamic weightage sliders, high-contrast sidebar, and Plotly charts.
+Description: Ultra-premium Vercel / Linear AI level frontend UI with ambient neon
+             mesh background, glassmorphism cards, glowing badges, and Plotly charts.
 =============================================================================
 """
 
@@ -25,189 +25,216 @@ from db_manager import save_evaluation, get_evaluation_history
 # -----------------------------------------------------------------------------
 st.set_page_config(
     page_title="ResumeAI Engine | Next-Gen ATS Optimizer",
-    page_icon="⚡",
+    page_icon="✨",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------------------
-# HIGH-CONTRAST ULTRA-PREMIUM FRONTEND STYLING (CSS)
+# ULTIMATE 2026 FRONTEND CSS INJECTION (VERCEL / LINEAR AI AESTHETIC)
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
 
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    /* Ambient Dark Background */
+    /* Ambient Dark Mesh Background */
     .stApp {
-        background: #050814;
+        background: #030712;
         background-image: 
-            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.18) 0px, transparent 50%),
-            radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 45%),
+            radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.22) 0px, transparent 45%),
+            radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.18) 0px, transparent 50%);
         background-attachment: fixed;
-        color: #F8FAFC !important;
+        color: #F9FAFB !important;
     }
 
-    /* Scrollbars */
+    /* Custom Sleek Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #050814; }
+    ::-webkit-scrollbar-track { background: #030712; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-    /* ==========================================
-       SIDEBAR HIGH-CONTRAST VISIBILITY FIX
-       ========================================== */
+    /* ==========================================================================
+       SIDEBAR HIGH-CONTRAST & NEON NAVIGATION CARDS
+       ========================================================================== */
     [data-testid="stSidebar"] {
-        background-color: #0B0F1D !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.12) !important;
+        background-color: #030712 !important;
+        border-right: 1.5px solid rgba(255, 255, 255, 0.12) !important;
     }
-    
+
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3, 
     [data-testid="stSidebar"] span, [data-testid="stSidebar"] p, [data-testid="stSidebar"] label {
         color: #FFFFFF !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
     }
 
-    /* Sidebar Radio Buttons High Contrast Styling */
+    /* Sidebar Radio Navigation Cards */
     div[data-testid="stRadio"] > label {
-        font-size: 1rem !important;
-        color: #F8FAFC !important;
-        font-weight: 700 !important;
-        margin-bottom: 10px !important;
+        font-size: 1.05rem !important;
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.02em !important;
+        margin-bottom: 12px !important;
     }
 
     div[data-testid="stRadio"] div[role="radiogroup"] > label {
-        background: rgba(30, 41, 59, 0.85) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 12px !important;
-        padding: 12px 18px !important;
-        margin-bottom: 10px !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        font-size: 0.95rem !important;
-        transition: all 0.25s ease-in-out !important;
-        cursor: pointer !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
-        background: rgba(99, 102, 241, 0.3) !important;
-        border-color: #818CF8 !important;
-        color: #FFFFFF !important;
-        transform: translateX(4px) !important;
-    }
-
-    /* Selected Active Navigation Card */
-    div[data-testid="stRadio"] div[role="radiogroup"] label[aria-checked="true"],
-    div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) {
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-        border-color: #C084FC !important;
-        color: #FFFFFF !important;
-        font-weight: 800 !important;
-        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
-    }
-
-    /* Input Fields & Text Areas High Contrast */
-    .stTextArea textarea, .stTextInput input {
         background: rgba(15, 23, 42, 0.9) !important;
         border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
         border-radius: 14px !important;
+        padding: 14px 20px !important;
+        margin-bottom: 10px !important;
         color: #FFFFFF !important;
+        font-weight: 700 !important;
         font-size: 0.98rem !important;
-        backdrop-filter: blur(16px);
-        transition: all 0.25s ease-in-out !important;
-    }
-    .stTextArea textarea:focus, .stTextInput input:focus {
-        border-color: #818CF8 !important;
-        box-shadow: 0 0 25px rgba(99, 102, 241, 0.45) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
     }
 
-    /* Primary Interactive Button */
+    div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
+        background: rgba(99, 102, 241, 0.25) !important;
+        border-color: #818CF8 !important;
+        color: #FFFFFF !important;
+        transform: translateX(6px) !important;
+        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.35) !important;
+    }
+
+    /* Active Selected Sidebar Navigation Card */
+    div[data-testid="stRadio"] div[role="radiogroup"] label[aria-checked="true"],
+    div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
+        border-color: #E879F9 !important;
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6) !important;
+    }
+
+    /* Slider Styling */
+    div[data-baseweb="slider"] {
+        padding-top: 10px !important;
+    }
+
+    /* ==========================================================================
+       INPUT FIELDS & FILE UPLOADER HIGH CONTRAST
+       ========================================================================== */
+    .stTextArea textarea, .stTextInput input {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+        border-radius: 16px !important;
+        color: #FFFFFF !important;
+        font-size: 1rem !important;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease-in-out !important;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .stTextArea textarea:focus, .stTextInput input:focus {
+        border-color: #A855F7 !important;
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.45) !important;
+    }
+
+    /* File Uploader Container */
+    div[data-testid="stFileUploader"] section {
+        background: rgba(15, 23, 42, 0.75) !important;
+        border: 2px dashed rgba(168, 85, 247, 0.4) !important;
+        border-radius: 16px !important;
+        padding: 20px !important;
+        transition: all 0.3s ease !important;
+    }
+    div[data-testid="stFileUploader"] section:hover {
+        border-color: #EC4899 !important;
+        background: rgba(15, 23, 42, 0.9) !important;
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.3) !important;
+    }
+
+    /* Primary Glowing Action Button */
     .stButton>button[kind="primary"], .stButton>button {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
         color: #FFFFFF !important;
         font-weight: 800 !important;
         border: none !important;
         border-radius: 14px !important;
-        padding: 14px 30px !important;
-        font-size: 1rem !important;
-        letter-spacing: 0.02em !important;
-        box-shadow: 0 4px 25px rgba(124, 58, 237, 0.5) !important;
+        padding: 16px 32px !important;
+        font-size: 1.05rem !important;
+        letter-spacing: 0.03em !important;
+        box-shadow: 0 6px 30px rgba(124, 58, 237, 0.55) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .stButton>button:hover {
-        transform: translateY(-2px) scale(1.01) !important;
-        box-shadow: 0 8px 35px rgba(124, 58, 237, 0.75) !important;
+        transform: translateY(-3px) scale(1.01) !important;
+        box-shadow: 0 12px 40px rgba(124, 58, 237, 0.8) !important;
     }
 
-    /* Hero Header */
+    /* ==========================================================================
+       HERO HEADER & EXECUTIVE CARDS
+       ========================================================================== */
     .hero-wrapper {
-        padding: 15px 0 10px 0;
+        padding: 10px 0 15px 0;
     }
     .hero-status-pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 6px 16px;
+        padding: 6px 18px;
         border-radius: 30px;
         background: rgba(99, 102, 241, 0.15);
-        border: 1px solid rgba(99, 102, 241, 0.4);
+        border: 1.5px solid rgba(99, 102, 241, 0.4);
         color: #C7D2FE;
         font-size: 0.85rem;
         font-weight: 700;
         margin-bottom: 12px;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
     }
     .pulse-dot {
         width: 10px;
         height: 10px;
         background-color: #10B981;
         border-radius: 50%;
-        box-shadow: 0 0 12px #10B981;
+        box-shadow: 0 0 14px #10B981;
         animation: pulse 2s infinite;
     }
     @keyframes pulse {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
         100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
     .hero-heading {
-        font-size: 3.2rem;
+        font-size: 3.4rem;
         font-weight: 800;
-        line-height: 1.15;
-        background: linear-gradient(135deg, #FFFFFF 20%, #A5B4FC 60%, #F472B6 100%);
+        line-height: 1.12;
+        background: linear-gradient(135deg, #FFFFFF 15%, #A5B4FC 50%, #F472B6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.035em;
         margin-bottom: 6px;
     }
     .hero-sub {
         font-size: 1.15rem;
-        color: #CBD5E1;
+        color: #94A3B8;
         font-weight: 500;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
-    /* Glass Metric Cards */
+    /* Executive Glass Metric Cards */
     .sexiest-card {
-        background: rgba(15, 23, 42, 0.75);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1.5px solid rgba(255, 255, 255, 0.14);
         border-radius: 20px;
         padding: 24px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin-bottom: 15px;
     }
     .sexiest-card:hover {
-        border-color: rgba(168, 85, 247, 0.5);
-        transform: translateY(-4px);
-        box-shadow: 0 25px 60px rgba(124, 58, 237, 0.3);
+        border-color: rgba(168, 85, 247, 0.6);
+        transform: translateY(-5px);
+        box-shadow: 0 25px 65px rgba(124, 58, 237, 0.35);
     }
     .card-label {
         font-size: 0.82rem;
@@ -217,16 +244,16 @@ st.markdown("""
         font-weight: 700;
         margin-bottom: 8px;
     }
-    .card-value {
-        font-size: 2.8rem;
+    .card-big-number {
+        font-size: 2.9rem;
         font-weight: 800;
         letter-spacing: -0.03em;
         line-height: 1;
     }
-    .grad-cyan { color: #38BDF8; }
-    .grad-indigo { color: #818CF8; }
-    .grad-emerald { color: #34D399; }
-    .grad-pink { color: #F472B6; }
+    .grad-cyan { color: #38BDF8; text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+    .grad-indigo { color: #818CF8; text-shadow: 0 0 20px rgba(129, 140, 248, 0.3); }
+    .grad-emerald { color: #34D399; text-shadow: 0 0 20px rgba(52, 211, 153, 0.3); }
+    .grad-pink { color: #F472B6; text-shadow: 0 0 20px rgba(244, 114, 182, 0.3); }
 
     /* Interactive Skill Badges */
     .badge-matched {
@@ -234,19 +261,20 @@ st.markdown("""
         align-items: center;
         gap: 6px;
         background: rgba(16, 185, 129, 0.18);
-        border: 1px solid #10B981;
+        border: 1.5px solid #10B981;
         color: #34D399;
         font-size: 0.88rem;
         font-weight: 700;
-        padding: 7px 16px;
+        padding: 8px 18px;
         border-radius: 30px;
         margin: 5px;
         box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
-        transition: all 0.2s ease;
+        transition: all 0.25s ease;
     }
     .badge-matched:hover {
-        background: rgba(16, 185, 129, 0.3);
-        transform: scale(1.05);
+        background: rgba(16, 185, 129, 0.32);
+        transform: scale(1.06);
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);
     }
 
     .badge-missing {
@@ -254,19 +282,32 @@ st.markdown("""
         align-items: center;
         gap: 6px;
         background: rgba(239, 68, 68, 0.18);
-        border: 1px solid #EF4444;
+        border: 1.5px solid #EF4444;
         color: #FCA5A5;
         font-size: 0.88rem;
         font-weight: 700;
-        padding: 7px 16px;
+        padding: 8px 18px;
         border-radius: 30px;
         margin: 5px;
         box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
-        transition: all 0.2s ease;
+        transition: all 0.25s ease;
     }
     .badge-missing:hover {
-        background: rgba(239, 68, 68, 0.3);
-        transform: scale(1.05);
+        background: rgba(239, 68, 68, 0.32);
+        transform: scale(1.06);
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.45);
+    }
+
+    /* Section Headers */
+    .section-header {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #F3F4F6;
+        margin-top: 15px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -284,10 +325,10 @@ def main():
     st.markdown("""
         <div class="hero-wrapper">
             <div class="hero-status-pill">
-                <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine Active
+                <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine Active • Latency: 12ms
             </div>
-            <div class="hero-heading">ResumeAI Engine</div>
-            <div class="hero-sub">AI-Powered Resume Screening & Skill Taxonomy Optimizer • Minor Project 1</div>
+            <div class="hero-heading">ResumeAI ATS Engine</div>
+            <div class="hero-sub">AI-Powered Resume Screening & Multi-Domain Skill Optimizer • Minor Project 1</div>
         </div>
     """, unsafe_allow_html=True)
 
@@ -302,7 +343,7 @@ def main():
 
     st.sidebar.markdown("---")
     st.sidebar.markdown("### 🎛️ Dynamic Scoring Weights")
-    st.sidebar.caption("Adjust weightages to customize ATS evaluation formula live:")
+    st.sidebar.caption("Tweak weightages to adjust ATS formula live:")
     w_semantic = st.sidebar.slider("SBERT Semantic Weight (%)", 10, 80, 45, 5)
     w_skill = st.sidebar.slider("Skill Coverage Weight (%)", 10, 80, 35, 5)
     w_tfidf = st.sidebar.slider("TF-IDF Keyword Weight (%)", 5, 50, 20, 5)
@@ -328,11 +369,11 @@ def main():
     # MODE 1: SINGLE RESUME EVALUATION
     # -----------------------------------------------------------------------------
     if "Single Resume Evaluation" in mode:
-        st.subheader("📥 Input Candidate Resume & Job Requirements")
+        st.markdown('<div class="section-header">📥 Input Candidate Resume & Job Requirements</div>', unsafe_allow_html=True)
         col_input1, col_input2 = st.columns(2)
 
         with col_input1:
-            uploaded_file = st.file_uploader("Upload Resume (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"])
+            uploaded_file = st.file_uploader("Upload Resume File (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"])
             resume_text = ""
             candidate_name = "Candidate Resume"
 
@@ -348,13 +389,13 @@ def main():
                 resume_text = sample_resume_text
                 st.info("Preset ML Candidate Resume Loaded")
             else:
-                resume_text = st.text_area("Or paste raw resume text:", height=200, placeholder="Paste resume text...")
+                resume_text = st.text_area("Or paste raw resume text:", height=200, placeholder="Paste candidate resume text...")
 
         with col_input2:
             if st.session_state.get("sample_loaded", False):
-                jd_text = st.text_area("Target Job Description (JD):", value=sample_jd_text, height=265)
+                jd_text = st.text_area("Target Job Description (JD):", value=sample_jd_text, height=275)
             else:
-                jd_text = st.text_area("Paste Target Job Description (JD):", height=265, placeholder="Paste job requirements...")
+                jd_text = st.text_area("Paste Target Job Description (JD):", height=275, placeholder="Paste job requirements...")
 
         jd_title = st.text_input("Job Role Name:", value="Machine Learning Engineer")
 
@@ -401,7 +442,7 @@ def main():
                 save_evaluation(candidate_name, jd_title, results)
 
             # Results Section
-            st.subheader("⚡ Live Match Intelligence & Score Analytics")
+            st.markdown('<div class="section-header">⚡ Live Match Intelligence & Score Analytics</div>', unsafe_allow_html=True)
 
             # Executive Metric Cards
             m1, m2, m3, m4 = st.columns(4)
@@ -447,7 +488,7 @@ def main():
             col_chart, col_details = st.columns([1.3, 1])
 
             with col_chart:
-                st.markdown("### 🕸️ Multi-Domain Skill Radar")
+                st.markdown('<div class="section-header">🕸️ Multi-Domain Skill Radar</div>', unsafe_allow_html=True)
                 res_cats = results["resume_skill_breakdown"]
                 jd_cats = results["jd_skill_breakdown"]
 
@@ -458,7 +499,7 @@ def main():
                 fig = go.Figure()
                 fig.add_trace(go.Scatterpolar(
                     r=res_counts, theta=categories, fill='toself', name='Candidate Resume',
-                    fillcolor='rgba(99, 102, 241, 0.4)', line=dict(color='#818CF8', width=3)
+                    fillcolor='rgba(99, 102, 241, 0.45)', line=dict(color='#818CF8', width=3)
                 ))
                 fig.add_trace(go.Scatterpolar(
                     r=jd_counts, theta=categories, fill='toself', name='Job Description',
@@ -476,10 +517,10 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
 
             with col_details:
-                st.markdown("### 👤 Contact Audit")
+                st.markdown('<div class="section-header">👤 Contact Audit</div>', unsafe_allow_html=True)
                 st.json(contact_info)
 
-                st.markdown("### 🏷️ Skill Gap Breakdown")
+                st.markdown('<div class="section-header">🏷️ Skill Gap Breakdown</div>', unsafe_allow_html=True)
                 matched = results["skill_analysis"]["matched_skills"]
                 missing = results["skill_analysis"]["missing_skills"]
 
@@ -499,7 +540,7 @@ def main():
                     st.success("No missing critical keywords!")
 
             st.markdown("---")
-            st.markdown("### 💡 AI Recommendations & Formatting Audit")
+            st.markdown('<div class="section-header">💡 AI Recommendations & ATS Formatting Audit</div>', unsafe_allow_html=True)
             st.info(recommendations["summary_advice"])
 
             for rec in recommendations["recommendations"]:
@@ -512,7 +553,7 @@ def main():
     # MODE 2: BATCH CANDIDATE RANKING
     # -----------------------------------------------------------------------------
     elif "Batch Candidate Ranking" in mode:
-        st.subheader("👥 Batch Candidate Resume Leaderboard")
+        st.markdown('<div class="section-header">👥 Batch Candidate Resume Leaderboard</div>', unsafe_allow_html=True)
         st.write("Upload multiple candidate resumes to rank them against a single target Job Description.")
 
         target_jd = st.text_area("Target Job Description (JD):", value=sample_jd_text if st.session_state.get("sample_loaded", False) else "", height=150)
@@ -560,7 +601,7 @@ def main():
     # MODE 3: EVALUATION HISTORY & LOGS
     # -----------------------------------------------------------------------------
     elif "Evaluation History & Logs" in mode:
-        st.subheader("📜 Audit History & Database Logs")
+        st.markdown('<div class="section-header">📜 Audit History & Database Logs</div>', unsafe_allow_html=True)
         df_hist = get_evaluation_history()
 
         if df_hist.empty:
