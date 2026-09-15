@@ -70,6 +70,7 @@ st.markdown("""
     div[data-testid="stTextArea"] label, 
     div[data-testid="stTextInput"] label,
     div[data-testid="stFileUploader"] label,
+    div[data-testid="stSelectbox"] label,
     div[data-baseweb="select"] label {
         color: #FFFFFF !important;
         font-size: 1.05rem !important;
@@ -79,9 +80,9 @@ st.markdown("""
     }
 
     /* Text Area & Input Fields */
-    .stTextArea textarea, .stTextInput input, div[data-baseweb="select"] > div {
+    .stTextArea textarea, .stTextInput input {
         background: rgba(15, 23, 42, 0.95) !important;
-        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+        border: 2px solid rgba(255, 255, 255, 0.25) !important;
         border-radius: 14px !important;
         color: #FFFFFF !important;
         font-size: 1rem !important;
@@ -102,13 +103,85 @@ st.markdown("""
     }
 
     /* ==========================================================================
-       BULLETPROOF FILE UPLOADER DROPZONE CONTRAST OVERRIDE
+       JOB ROLE SELECTBOX & BASEWEB DROPDOWN HIGH CONTRAST OVERRIDE
        ========================================================================== */
-    div[data-testid="stFileUploader"] {
-        margin-bottom: 20px;
+    div[data-testid="stSelectbox"] {
+        margin-bottom: 20px !important;
     }
 
-    div[data-testid="stFileUploader"] label {
+    div[data-baseweb="select"] {
+        background-color: #0F172A !important;
+        border-radius: 14px !important;
+    }
+
+    div[data-baseweb="select"] > div {
+        background-color: #0F172A !important;
+        border: 2px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 14px !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    div[data-baseweb="select"] > div:hover {
+        border-color: #A855F7 !important;
+        box-shadow: 0 0 25px rgba(168, 85, 247, 0.4) !important;
+    }
+
+    div[data-baseweb="select"] * {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+    }
+
+    div[data-baseweb="select"] svg {
+        fill: #FFFFFF !important;
+        color: #FFFFFF !important;
+    }
+
+    /* Floating Dropdown Popover & Options Menu */
+    div[data-baseweb="popover"],
+    div[data-baseweb="menu"],
+    ul[role="listbox"] {
+        background-color: #0F172A !important;
+        border: 2px solid #818CF8 !important;
+        border-radius: 14px !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85) !important;
+    }
+
+    ul[role="listbox"] li,
+    div[data-baseweb="menu"] li,
+    div[data-baseweb="menu"] [role="option"] {
+        background-color: #0F172A !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        font-size: 0.98rem !important;
+        padding: 12px 18px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    ul[role="listbox"] li:hover,
+    ul[role="listbox"] li[aria-selected="true"],
+    div[data-baseweb="menu"] li:hover,
+    div[data-baseweb="menu"] [role="option"]:hover,
+    div[data-baseweb="menu"] [aria-selected="true"] {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        color: #FFFFFF !important;
+    }
+
+    ul[role="listbox"] li * {
+        color: #FFFFFF !important;
+    }
+
+    /* ==========================================================================
+       BULLETPROOF FILE UPLOADER DROPZONE & SUBMIT BOX CONTRAST OVERRIDE
+       ========================================================================== */
+    div[data-testid="stFileUploader"],
+    section[data-testid="stFileUploader"] {
+        margin-bottom: 24px !important;
+    }
+
+    div[data-testid="stFileUploader"] label,
+    section[data-testid="stFileUploader"] label {
         color: #FFFFFF !important;
         font-size: 1.05rem !important;
         font-weight: 800 !important;
@@ -116,29 +189,33 @@ st.markdown("""
         display: block !important;
     }
 
-    /* Dropzone Outer Container */
-    div[data-testid="stFileUploaderDropzone"] {
+    /* Outer Dropzone Container */
+    div[data-testid="stFileUploaderDropzone"],
+    section[data-testid="stFileUploaderDropzone"] {
         background-color: #0F172A !important;
         border: 2px dashed #818CF8 !important;
         border-radius: 16px !important;
-        padding: 24px !important;
+        padding: 26px 20px !important;
         text-align: center !important;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45) !important;
         transition: all 0.3s ease !important;
     }
 
-    div[data-testid="stFileUploaderDropzone"]:hover {
+    div[data-testid="stFileUploaderDropzone"]:hover,
+    section[data-testid="stFileUploaderDropzone"]:hover {
         border-color: #EC4899 !important;
         background-color: #1E1B4B !important;
-        box-shadow: 0 0 30px rgba(236, 72, 153, 0.4) !important;
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.45) !important;
     }
 
-    /* FORCE ALL TEXT INSIDE DROPZONE TO BE BRIGHT WHITE & VISIBLE */
+    /* Target all text elements inside file uploader dropzone */
     div[data-testid="stFileUploader"] *,
     div[data-testid="stFileUploaderDropzone"] *,
+    section[data-testid="stFileUploaderDropzone"] *,
     div[data-testid="stFileUploaderDropzoneInstructions"] *,
     div[data-testid="stFileUploaderDropzoneInstructions"] div,
     div[data-testid="stFileUploaderDropzoneInstructions"] span,
+    div[data-testid="stFileUploaderDropzoneInstructions"] p,
     div[data-testid="stFileUploaderDropzoneInstructions"] small {
         color: #FFFFFF !important;
         font-size: 0.98rem !important;
@@ -147,9 +224,10 @@ st.markdown("""
         visibility: visible !important;
     }
 
-    /* Small subtext (Limit 200MB per file...) */
-    div[data-testid="stFileUploaderDropzoneInstructions"] small {
-        color: #E2E8F0 !important;
+    /* Small info subtext (Limit 200MB per file...) */
+    div[data-testid="stFileUploaderDropzoneInstructions"] small,
+    section[data-testid="stFileUploaderDropzone"] small {
+        color: #CBD5E1 !important;
         font-size: 0.88rem !important;
         font-weight: 600 !important;
         margin-top: 6px !important;
@@ -157,19 +235,71 @@ st.markdown("""
     }
 
     /* Browse files button inside dropzone */
-    div[data-testid="stFileUploaderDropzone"] button {
+    div[data-testid="stFileUploaderDropzone"] button,
+    section[data-testid="stFileUploaderDropzone"] button,
+    div[data-testid="stFileUploader"] button[data-testid="baseButton-secondary"] {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
         color: #FFFFFF !important;
-        border: none !important;
+        border: 1.5px solid #A855F7 !important;
         font-weight: 800 !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
         padding: 10px 22px !important;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
-        margin-top: 8px !important;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
+        margin-top: 10px !important;
     }
-    div[data-testid="stFileUploaderDropzone"] button:hover {
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
-        transform: scale(1.03) !important;
+
+    div[data-testid="stFileUploaderDropzone"] button *,
+    section[data-testid="stFileUploaderDropzone"] button * {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+    }
+
+    div[data-testid="stFileUploaderDropzone"] button:hover,
+    section[data-testid="stFileUploaderDropzone"] button:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%) !important;
+        border-color: #F472B6 !important;
+        transform: scale(1.04) !important;
+    }
+
+    /* Attached File Item Container Card (when file is uploaded) */
+    div[data-testid="stFileUploaderFileData"],
+    section[data-testid="stFileUploaderFileData"],
+    div[data-testid="stUploadedFile"] {
+        background-color: #1E293B !important;
+        border: 1.5px solid #818CF8 !important;
+        border-radius: 12px !important;
+        padding: 12px 18px !important;
+        margin-top: 12px !important;
+    }
+
+    div[data-testid="stFileUploaderFileData"] *,
+    section[data-testid="stFileUploaderFileData"] *,
+    div[data-testid="stUploadedFile"] * {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+    }
+
+    /* Delete / Remove icon button on uploaded file */
+    div[data-testid="stFileUploaderDeleteBtn"] button,
+    button[aria-label="Remove file"] {
+        background: rgba(239, 68, 68, 0.25) !important;
+        border: 1.5px solid #EF4444 !important;
+        border-radius: 8px !important;
+    }
+
+    div[data-testid="stFileUploaderDeleteBtn"] button *,
+    button[aria-label="Remove file"] * {
+        color: #FCA5A5 !important;
+    }
+
+    div[data-testid="stFileUploaderDeleteBtn"] button:hover,
+    button[aria-label="Remove file"]:hover {
+        background: rgba(239, 68, 68, 0.6) !important;
+    }
+
+    div[data-testid="stFileUploaderDeleteBtn"] button:hover *,
+    button[aria-label="Remove file"]:hover * {
+        color: #FFFFFF !important;
     }
 
     /* ==========================================================================
