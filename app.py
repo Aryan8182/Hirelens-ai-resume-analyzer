@@ -3,8 +3,8 @@
 Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
-Description: Ultra-premium Vercel / Linear AI level frontend UI with ambient neon
-             mesh background, glassmorphism cards, glowing badges, and Plotly charts.
+Description: Ultra-high contrast Vercel/Linear dark theme with explicit CSS
+             overrides for file uploader instructions, text area labels & inputs.
 =============================================================================
 """
 
@@ -31,17 +31,17 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# ULTIMATE 2026 FRONTEND CSS INJECTION (VERCEL / LINEAR AI AESTHETIC)
+# MAXIMUM CONTRAST FRONTEND CSS INJECTION
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    /* Ambient Dark Mesh Background */
+    /* Ambient Dark Background */
     .stApp {
         background: #030712;
         background-image: 
@@ -49,41 +49,135 @@ st.markdown("""
             radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.22) 0px, transparent 45%),
             radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.18) 0px, transparent 50%);
         background-attachment: fixed;
-        color: #F9FAFB !important;
+        color: #FFFFFF !important;
     }
 
-    /* Custom Sleek Scrollbar */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #030712; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
     /* ==========================================================================
-       SIDEBAR HIGH-CONTRAST & NEON NAVIGATION CARDS
+       LABEL & TEXT AREA HIGH CONTRAST FIXES (BRIGHT WHITE & NEON)
+       ========================================================================== */
+    label, p, span, small, div {
+        color: #FFFFFF !important;
+    }
+
+    /* Text Area & Input Labels */
+    div[data-testid="stTextArea"] label, 
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stFileUploader"] label {
+        color: #FFFFFF !important;
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.01em !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Text Area & Input Fields */
+    .stTextArea textarea, .stTextInput input {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 14px !important;
+        color: #FFFFFF !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        backdrop-filter: blur(20px);
+        transition: all 0.25s ease-in-out !important;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .stTextArea textarea:focus, .stTextInput input:focus {
+        border-color: #A855F7 !important;
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.5) !important;
+    }
+
+    .stTextArea textarea::placeholder, .stTextInput input::placeholder {
+        color: #94A3B8 !important;
+        opacity: 1 !important;
+    }
+
+    /* ==========================================================================
+       FILE UPLOADER INNER TEXT & CONTRAST OVERRIDES
+       ========================================================================== */
+    div[data-testid="stFileUploader"] {
+        margin-bottom: 15px;
+    }
+
+    /* File Uploader Dropzone Box */
+    div[data-testid="stFileUploaderDropzone"] {
+        background: rgba(15, 23, 42, 0.92) !important;
+        border: 2px dashed #818CF8 !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+        transition: all 0.3s ease !important;
+    }
+    div[data-testid="stFileUploaderDropzone"]:hover {
+        border-color: #EC4899 !important;
+        background: rgba(15, 23, 42, 0.98) !important;
+        box-shadow: 0 0 35px rgba(236, 72, 153, 0.35) !important;
+    }
+
+    /* All inner text inside dropzone (Drag and drop, Limit, No file chosen) */
+    div[data-testid="stFileUploaderDropzoneInstructions"] span,
+    div[data-testid="stFileUploaderDropzoneInstructions"] small,
+    div[data-testid="stFileUploaderDropzoneInstructions"] div,
+    div[data-testid="stFileUploaderDropzone"] span,
+    div[data-testid="stFileUploaderDropzone"] small,
+    div[data-testid="stFileUploaderDropzone"] p,
+    div[data-testid="stFileUploader"] section * {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
+    }
+
+    /* Small limit subtext */
+    div[data-testid="stFileUploaderDropzoneInstructions"] small {
+        color: #CBD5E1 !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+    }
+
+    /* Browse Files Button inside Dropzone */
+    div[data-testid="stFileUploaderDropzone"] button {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        font-weight: 800 !important;
+        border-radius: 10px !important;
+        padding: 10px 22px !important;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4) !important;
+    }
+    div[data-testid="stFileUploaderDropzone"] button:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
+        transform: scale(1.03) !important;
+    }
+
+    /* ==========================================================================
+       SIDEBAR HIGH CONTRAST & NEON CARDS
        ========================================================================== */
     [data-testid="stSidebar"] {
         background-color: #030712 !important;
-        border-right: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+        border-right: 1.5px solid rgba(255, 255, 255, 0.14) !important;
     }
 
-    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3, 
-    [data-testid="stSidebar"] span, [data-testid="stSidebar"] p, [data-testid="stSidebar"] label {
+    [data-testid="stSidebar"] * {
         color: #FFFFFF !important;
-        font-weight: 700 !important;
     }
 
-    /* Sidebar Radio Navigation Cards */
     div[data-testid="stRadio"] > label {
         font-size: 1.05rem !important;
         color: #FFFFFF !important;
         font-weight: 800 !important;
-        letter-spacing: 0.02em !important;
         margin-bottom: 12px !important;
     }
 
     div[data-testid="stRadio"] div[role="radiogroup"] > label {
-        background: rgba(15, 23, 42, 0.9) !important;
-        border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
         border-radius: 14px !important;
         padding: 14px 20px !important;
         margin-bottom: 10px !important;
@@ -96,14 +190,12 @@ st.markdown("""
     }
 
     div[data-testid="stRadio"] div[role="radiogroup"] > label:hover {
-        background: rgba(99, 102, 241, 0.25) !important;
+        background: rgba(99, 102, 241, 0.3) !important;
         border-color: #818CF8 !important;
         color: #FFFFFF !important;
         transform: translateX(6px) !important;
-        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.35) !important;
     }
 
-    /* Active Selected Sidebar Navigation Card */
     div[data-testid="stRadio"] div[role="radiogroup"] label[aria-checked="true"],
     div[data-testid="stRadio"] div[role="radiogroup"] label:has(input:checked) {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
@@ -113,45 +205,7 @@ st.markdown("""
         box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6) !important;
     }
 
-    /* Slider Styling */
-    div[data-baseweb="slider"] {
-        padding-top: 10px !important;
-    }
-
-    /* ==========================================================================
-       INPUT FIELDS & FILE UPLOADER HIGH CONTRAST
-       ========================================================================== */
-    .stTextArea textarea, .stTextInput input {
-        background: rgba(15, 23, 42, 0.95) !important;
-        border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
-        border-radius: 16px !important;
-        color: #FFFFFF !important;
-        font-size: 1rem !important;
-        backdrop-filter: blur(20px);
-        transition: all 0.3s ease-in-out !important;
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
-    }
-
-    .stTextArea textarea:focus, .stTextInput input:focus {
-        border-color: #A855F7 !important;
-        box-shadow: 0 0 30px rgba(168, 85, 247, 0.45) !important;
-    }
-
-    /* File Uploader Container */
-    div[data-testid="stFileUploader"] section {
-        background: rgba(15, 23, 42, 0.75) !important;
-        border: 2px dashed rgba(168, 85, 247, 0.4) !important;
-        border-radius: 16px !important;
-        padding: 20px !important;
-        transition: all 0.3s ease !important;
-    }
-    div[data-testid="stFileUploader"] section:hover {
-        border-color: #EC4899 !important;
-        background: rgba(15, 23, 42, 0.9) !important;
-        box-shadow: 0 0 30px rgba(236, 72, 153, 0.3) !important;
-    }
-
-    /* Primary Glowing Action Button */
+    /* Primary Action Button */
     .stButton>button[kind="primary"], .stButton>button {
         background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
         color: #FFFFFF !important;
@@ -160,7 +214,6 @@ st.markdown("""
         border-radius: 14px !important;
         padding: 16px 32px !important;
         font-size: 1.05rem !important;
-        letter-spacing: 0.03em !important;
         box-shadow: 0 6px 30px rgba(124, 58, 237, 0.55) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
@@ -169,12 +222,8 @@ st.markdown("""
         box-shadow: 0 12px 40px rgba(124, 58, 237, 0.8) !important;
     }
 
-    /* ==========================================================================
-       HERO HEADER & EXECUTIVE CARDS
-       ========================================================================== */
-    .hero-wrapper {
-        padding: 10px 0 15px 0;
-    }
+    /* Hero Component */
+    .hero-wrapper { padding: 10px 0 15px 0; }
     .hero-status-pill {
         display: inline-flex;
         align-items: center;
@@ -187,7 +236,6 @@ st.markdown("""
         font-size: 0.85rem;
         font-weight: 700;
         margin-bottom: 12px;
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
     }
     .pulse-dot {
         width: 10px;
@@ -214,17 +262,17 @@ st.markdown("""
     }
     .hero-sub {
         font-size: 1.15rem;
-        color: #94A3B8;
+        color: #CBD5E1;
         font-weight: 500;
         margin-bottom: 24px;
     }
 
     /* Executive Glass Metric Cards */
     .sexiest-card {
-        background: rgba(15, 23, 42, 0.85);
+        background: rgba(15, 23, 42, 0.88);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
-        border: 1.5px solid rgba(255, 255, 255, 0.14);
+        border: 1.5px solid rgba(255, 255, 255, 0.16);
         border-radius: 20px;
         padding: 24px;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
@@ -240,7 +288,7 @@ st.markdown("""
         font-size: 0.82rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: #94A3B8;
+        color: #CBD5E1;
         font-weight: 700;
         margin-bottom: 8px;
     }
@@ -260,49 +308,46 @@ st.markdown("""
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(16, 185, 129, 0.18);
+        background: rgba(16, 185, 129, 0.2);
         border: 1.5px solid #10B981;
         color: #34D399;
-        font-size: 0.88rem;
+        font-size: 0.9rem;
         font-weight: 700;
         padding: 8px 18px;
         border-radius: 30px;
         margin: 5px;
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         transition: all 0.25s ease;
     }
     .badge-matched:hover {
-        background: rgba(16, 185, 129, 0.32);
+        background: rgba(16, 185, 129, 0.35);
         transform: scale(1.06);
-        box-shadow: 0 0 25px rgba(16, 185, 129, 0.45);
     }
 
     .badge-missing {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        background: rgba(239, 68, 68, 0.18);
+        background: rgba(239, 68, 68, 0.2);
         border: 1.5px solid #EF4444;
         color: #FCA5A5;
-        font-size: 0.88rem;
+        font-size: 0.9rem;
         font-weight: 700;
         padding: 8px 18px;
         border-radius: 30px;
         margin: 5px;
-        box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         transition: all 0.25s ease;
     }
     .badge-missing:hover {
-        background: rgba(239, 68, 68, 0.32);
+        background: rgba(239, 68, 68, 0.35);
         transform: scale(1.06);
-        box-shadow: 0 0 25px rgba(239, 68, 68, 0.45);
     }
 
-    /* Section Headers */
     .section-header {
         font-size: 1.4rem;
         font-weight: 800;
-        color: #F3F4F6;
+        color: #FFFFFF;
         margin-top: 15px;
         margin-bottom: 12px;
         display: flex;
