@@ -121,7 +121,7 @@ def main():
 
         st.markdown("---")
 
-        if st.button("🚀 Run AI ATS Match & Analysis", type="primary", use_container_state=True):
+        if st.button("🚀 Run AI ATS Match & Analysis", type="primary", use_container_width=True):
             if not resume_text.strip() or not jd_text.strip():
                 st.warning("Please provide both a Resume and a Job Description to proceed.")
                 return
@@ -172,7 +172,7 @@ def main():
                     height=400,
                     margin=dict(l=40, r=40, t=30, b=30)
                 )
-                st.plotly_chart(fig, use_container_state=True)
+                st.plotly_chart(fig, use_container_width=True)
 
             with col_details:
                 st.markdown("### 👤 Contact & Profile Audit")
@@ -244,13 +244,13 @@ def main():
             df_results["Rank"] = range(1, len(df_results) + 1)
 
             st.markdown("### 🏆 Candidate Leaderboard")
-            st.dataframe(df_results, use_container_state=True)
+            st.dataframe(df_results, use_container_width=True)
 
             fig_bar = px.bar(
                 df_results, x="Candidate File", y="ATS Score (%)", color="Match Grade",
                 title="Candidate Match Comparison Score", text_auto=True
             )
-            st.plotly_chart(fig_bar, use_container_state=True)
+            st.plotly_chart(fig_bar, use_container_width=True)
 
     # -----------------------------------------------------------------------------
     # TAB 3: EVALUATION HISTORY & LOGS
@@ -262,11 +262,11 @@ def main():
         if df_hist.empty:
             st.info("No evaluations logged yet. Run a single or batch evaluation to populate history.")
         else:
-            st.dataframe(df_hist, use_container_state=True)
+            st.dataframe(df_hist, use_container_width=True)
 
             st.markdown("### 📈 Evaluation Score Distribution")
             fig_hist = px.histogram(df_hist, x="ats_score", nbins=10, title="Distribution of Evaluated ATS Scores", labels={"ats_score": "ATS Match Score (%)"})
-            st.plotly_chart(fig_hist, use_container_state=True)
+            st.plotly_chart(fig_hist, use_container_width=True)
 
     # -----------------------------------------------------------------------------
     # TAB 4: METHODOLOGY & VIVA INFO
