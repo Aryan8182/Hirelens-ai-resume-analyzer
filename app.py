@@ -70,7 +70,7 @@ def main():
 
     # Sidebar Controls
     st.sidebar.header("⚙️ Control Panel")
-    mode = st.sidebar.radio("Select Mode", ["Single Resume Evaluation", "Batch Candidate Ranking", "Evaluation History & Logs", "Methodology & Viva Info"])
+    mode = st.sidebar.radio("Select Mode", ["Single Resume Evaluation", "Batch Candidate Ranking", "Evaluation History & Logs"])
 
     # Sample Data Helper Button
     st.sidebar.markdown("---")
@@ -267,35 +267,5 @@ def main():
             st.markdown("### 📈 Evaluation Score Distribution")
             fig_hist = px.histogram(df_hist, x="ats_score", nbins=10, title="Distribution of Evaluated ATS Scores", labels={"ats_score": "ATS Match Score (%)"})
             st.plotly_chart(fig_hist, use_container_width=True)
-
-    # -----------------------------------------------------------------------------
-    # TAB 4: METHODOLOGY & VIVA INFO
-    # -----------------------------------------------------------------------------
-    elif mode == "Methodology & Viva Info":
-        st.subheader("📚 Technical Architecture & Methodology (For Project Viva Defense)")
-        st.markdown("""
-        ### 🔬 How the ATS Optimization System Works
-
-        1. **Text Parsing & Extraction (`pdfplumber` & `python-docx`)**:
-           - Extract raw text streams from PDF and DOCX files.
-           - Apply Regex normalization to extract contact details (email, phone, LinkedIn, GitHub).
-
-        2. **NLP Skill Extraction & Taxonomy**:
-           - Categorizes hard skills across 7 domains: *Programming Languages, AI/ML, Data Analytics, Web APIs, Databases, Cloud & DevOps, Soft Skills*.
-           - Uses word-boundary Regex matching to prevent false positives.
-
-        3. **Hybrid ATS Scoring Formula**:
-           $$\\text{ATS Score} = 0.45 \\times \\text{Semantic Score (SBERT)} + 0.35 \\times \\text{Skill Coverage \\%} + 0.20 \\times \\text{TF-IDF Cosine Similarity}$$
-
-        4. **Sentence-Transformers (SBERT - `all-MiniLM-L6-v2`)**:
-           - Encodes text into 384-dimensional dense vector embeddings.
-           - Computes cosine similarity between candidate experience context and job description context.
-
-        5. **Actionable Feedback Generator**:
-           - Identifies missing critical skills.
-           - Audits contact links, word counts, and metric quantification.
-        """)
-
-
 if __name__ == "__main__":
     main()
