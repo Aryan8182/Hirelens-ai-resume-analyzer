@@ -1,6 +1,6 @@
 # Minor Project 1 Synopsis & Report
 
-**Title**: AI-Powered Resume Screening and ATS Optimization System  
+**Title**: HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System  
 **Degree**: Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning  
 **Academic Year**: 3rd Year (Semester 5/6)  
 
@@ -9,7 +9,7 @@
 ## 1. Abstract
 In modern hiring workflows, corporate recruiters receive hundreds of candidate resumes for every open position. Manual screening of resumes is time-consuming, prone to human bias, and inefficient. While automated Applicant Tracking Systems (ATS) exist, many rely solely on rigid keyword matching, frequently eliminating qualified candidates who use alternative terminology or non-standard formatting.
 
-This project presents an **AI-Powered Resume Screening and ATS Optimization System** designed using Natural Language Processing (NLP) and Deep Learning text embeddings. The system extracts structured entities from PDF/DOCX resumes, maps technical competencies using a multi-domain skill taxonomy, and computes a composite ATS score utilizing Sentence-Transformers (`all-MiniLM-L6-v2`) and TF-IDF Cosine Similarity. Furthermore, the system provides candidate-centric feedback including skill gap analysis, missing keyword alerts, and an interactive Streamlit web dashboard.
+This project presents **HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System** designed using Natural Language Processing (NLP) and Deep Learning text embeddings. The system extracts structured entities from PDF/DOCX resumes, maps technical competencies using a multi-domain skill taxonomy, and computes a composite ATS score utilizing Sentence-Transformers (`all-MiniLM-L6-v2`) and TF-IDF Cosine Similarity. Furthermore, the system provides candidate-centric feedback including skill gap analysis, missing keyword alerts, and an interactive Streamlit web dashboard.
 
 ---
 

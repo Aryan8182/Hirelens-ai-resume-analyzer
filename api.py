@@ -1,6 +1,6 @@
 """
 =============================================================================
-Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
+Minor Project 1: HireLens - AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System
 File: api.py
 Author: B.Tech 3rd Year AI & ML Project
 Description: FastAPI REST API service for ATS resume evaluation endpoints.
@@ -18,7 +18,7 @@ from recommendation_engine import generate_recommendations
 from db_manager import save_evaluation
 
 app = FastAPI(
-    title="AI Resume Screening & ATS Optimizer API",
+    title="HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System API",
     description="Minor Project 1 - B.Tech 3rd Year AI & ML REST API Service",
     version="1.0.0"
 )
@@ -34,7 +34,7 @@ class MatchRequest(BaseModel):
 @app.get("/")
 def read_root():
     return {
-        "project": "AI-Powered Resume Screening & ATS Optimizer API",
+        "project": "HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System API",
         "author": "3rd Year B.Tech AI & ML",
         "status": "Online",
         "documentation": "/docs"

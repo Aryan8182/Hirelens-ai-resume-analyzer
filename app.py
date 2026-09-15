@@ -1,6 +1,6 @@
 """
 =============================================================================
-Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
+Minor Project 1: HireLens - AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
 Description: Bulletproof file uploader dropzone contrast CSS override,
@@ -25,8 +25,8 @@ from db_manager import save_evaluation, get_evaluation_history, clear_evaluation
 # PAGE CONFIGURATION
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="ResumeAI Engine | Next-Gen ATS Optimizer",
-    page_icon="✨",
+    page_title="HireLens | AI-Powered Resume Screening & Job Matching",
+    page_icon="🔍",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -609,8 +609,8 @@ def main():
             <div class="hero-status-pill">
                 <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine Active • Latency: 12ms
             </div>
-            <div class="hero-heading">ResumeAI ATS Engine</div>
-            <div class="hero-sub">AI-Powered Resume Screening & Multi-Domain Skill Optimizer • Minor Project 1</div>
+            <div class="hero-heading">HireLens</div>
+            <div class="hero-sub">AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System • Minor Project 1</div>
         </div>
     """, unsafe_allow_html=True)
 
