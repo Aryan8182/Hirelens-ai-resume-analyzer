@@ -3,8 +3,8 @@
 Minor Project 1: AI-Powered Resume Screening & ATS Optimizer
 File: app.py
 Author: B.Tech 3rd Year AI & ML Project
-Description: Streamlit interactive web application with custom futuristic
-             glassmorphism dark UI theme, Plotly charts, and ATS analysis.
+Description: Ultra-modern Vercel/Linear-inspired dark glassmorphism frontend
+             with ambient neon glow, Plotly charts, and ATS analysis.
 =============================================================================
 """
 
@@ -24,124 +24,202 @@ from db_manager import save_evaluation, get_evaluation_history
 # PAGE CONFIGURATION
 # -----------------------------------------------------------------------------
 st.set_page_config(
-    page_title="AI Resume ATS Optimizer | Minor Project 1",
-    page_icon="⚡",
+    page_title="ResumeAI Engine | Next-Gen ATS Optimizer",
+    page_icon="✨",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM FUTURISTIC GLASSMORPHISM STYLING (CSS)
+# ULTRA-PREMIUM FRONTEND STYLING (VERCEL / LINEAR AI AESTHETIC)
 # -----------------------------------------------------------------------------
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
 
     html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    /* Main App Dark Background Gradient */
+    /* Ambient Gradient Mesh Background */
     .stApp {
-        background: radial-gradient(circle at 15% 15%, #1E1B4B 0%, #0F172A 55%, #020617 100%);
-        color: #F8FAFC;
+        background: #030712;
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+            radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 50%);
+        background-attachment: fixed;
+        color: #F9FAFB;
     }
 
-    /* Hero Header Styling */
-    .hero-container {
-        padding: 20px 0px 10px 0px;
+    /* Sleek Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+    /* Input & Text Area Enhancements */
+    .stTextArea textarea, .stTextInput input, div[data-baseweb="select"] {
+        background: rgba(17, 24, 39, 0.75) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 14px !important;
+        color: #F3F4F6 !important;
+        font-size: 0.95rem !important;
+        backdrop-filter: blur(16px);
+        transition: all 0.25s ease-in-out !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
-    .hero-title {
-        font-size: 2.8rem;
+    .stTextArea textarea:focus, .stTextInput input:focus {
+        border-color: #6366F1 !important;
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.35) !important;
+    }
+
+    /* Primary Glowing Button */
+    .stButton>button[kind="primary"], .stButton>button {
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #D946EF 100%) !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 12px 28px !important;
+        font-size: 0.95rem !important;
+        letter-spacing: 0.02em !important;
+        box-shadow: 0 4px 25px rgba(124, 58, 237, 0.45) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px) scale(1.01) !important;
+        box-shadow: 0 8px 35px rgba(124, 58, 237, 0.65) !important;
+    }
+
+    /* Hero Header Component */
+    .hero-wrapper {
+        position: relative;
+        padding: 15px 0 10px 0;
+    }
+    .hero-status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        border-radius: 30px;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        color: #A5B4FC;
+        font-size: 0.82rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #10B981;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #10B981;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .hero-heading {
+        font-size: 3.1rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+        line-height: 1.15;
+        background: linear-gradient(135deg, #FFFFFF 20%, #A5B4FC 60%, #E879F9 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: -0.02em;
-        margin-bottom: 5px;
+        letter-spacing: -0.03em;
+        margin-bottom: 6px;
     }
-    .hero-subtitle {
+    .hero-sub {
         font-size: 1.1rem;
-        color: #94A3B8;
-        margin-bottom: 20px;
+        color: #9CA3AF;
         font-weight: 500;
-    }
-    .glow-badge {
-        display: inline-block;
-        padding: 5px 14px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        background: rgba(99, 102, 241, 0.15);
-        color: #818CF8;
-        border: 1px solid rgba(99, 102, 241, 0.4);
-        margin-right: 8px;
+        margin-bottom: 20px;
     }
 
-    /* Glassmorphic Cards */
-    .glass-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+    /* Glass Cards */
+    .sexiest-card {
+        background: rgba(17, 24, 39, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 22px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        transition: all 0.3s ease;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin-bottom: 15px;
     }
-    .glass-card:hover {
-        border-color: rgba(99, 102, 241, 0.5);
-        box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
+    .sexiest-card:hover {
+        border-color: rgba(168, 85, 247, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 25px 60px rgba(124, 58, 237, 0.25);
     }
-
-    /* Custom Metric Displays */
-    .metric-value {
-        font-size: 2.4rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-    }
-    .metric-label-text {
-        font-size: 0.85rem;
-        color: #94A3B8;
+    .card-label {
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: #9CA3AF;
+        font-weight: 700;
+        margin-bottom: 6px;
     }
-    .text-emerald { color: #34D399; }
-    .text-indigo { color: #818CF8; }
-    .text-cyan { color: #38BDF8; }
-    .text-pink { color: #F472B6; }
+    .card-value {
+        font-size: 2.6rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+    }
+    .grad-cyan { color: #38BDF8; }
+    .grad-indigo { color: #818CF8; }
+    .grad-emerald { color: #34D399; }
+    .grad-pink { color: #F472B6; }
 
-    /* Interactive Skill Badges */
-    .skill-badge-match {
-        display: inline-block;
-        background: rgba(16, 185, 129, 0.15);
-        border: 1px solid #10B981;
+    /* Interactive Badges */
+    .badge-matched {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.4);
         color: #34D399;
         font-size: 0.85rem;
         font-weight: 600;
         padding: 6px 14px;
-        border-radius: 20px;
+        border-radius: 30px;
         margin: 4px;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+        box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+        transition: all 0.2s ease;
     }
-    .skill-badge-missing {
-        display: inline-block;
-        background: rgba(239, 68, 68, 0.15);
-        border: 1px solid #EF4444;
+    .badge-matched:hover {
+        background: rgba(16, 185, 129, 0.25);
+        transform: scale(1.03);
+    }
+
+    .badge-missing {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.4);
         color: #FCA5A5;
         font-size: 0.85rem;
         font-weight: 600;
         padding: 6px 14px;
-        border-radius: 20px;
+        border-radius: 30px;
         margin: 4px;
-        box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+        transition: all 0.2s ease;
+    }
+    .badge-missing:hover {
+        background: rgba(239, 68, 68, 0.25);
+        transform: scale(1.03);
     }
 
-    /* Sidebar Dark Theme Styling */
+    /* Sidebar Dark Styling */
     [data-testid="stSidebar"] {
-        background-color: #0B0F19 !important;
+        background-color: #030712 !important;
         border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
     </style>
@@ -156,28 +234,24 @@ def load_sample_file(path: str) -> str:
 
 
 def main():
-    # Hero Title Header
+    # Hero Title Component
     st.markdown("""
-        <div class="hero-container">
-            <div class="hero-title">⚡ AI Resume ATS Optimizer</div>
-            <div class="hero-subtitle">B.Tech 3rd Year Minor Project 1 | Department of AI & ML</div>
-            <div>
-                <span class="glow-badge">🔥 SBERT Embeddings</span>
-                <span class="glow-badge">🧠 TF-IDF NLP</span>
-                <span class="glow-badge">⚡ Real-Time Skill Radar</span>
+        <div class="hero-wrapper">
+            <div class="hero-status-pill">
+                <span class="pulse-dot"></span> SBERT & TF-IDF NLP Engine v2.4 Active
             </div>
+            <div class="hero-heading">ResumeAI ATS Engine</div>
+            <div class="hero-sub">AI-Powered Resume Screening & Skill Taxonomy Optimizer • B.Tech Minor Project 1</div>
         </div>
     """, unsafe_allow_html=True)
 
-    st.write("")
-
     # Sidebar Controls
-    st.sidebar.header("⚙️ Dashboard Controls")
+    st.sidebar.header("⚡ Navigation & Engine Mode")
     mode = st.sidebar.radio("Select Application Mode", ["Single Resume Evaluation", "Batch Candidate Ranking", "Evaluation History & Logs"])
 
     st.sidebar.markdown("---")
-    st.sidebar.subheader("💡 Demo Quick-Start")
-    if st.sidebar.button("Load Preset Sample ML Data", use_container_width=True):
+    st.sidebar.subheader("🚀 Demo Preset")
+    if st.sidebar.button("Load ML Engineer Preset Data", use_container_width=True):
         st.session_state["sample_loaded"] = True
 
     # Sample Data Paths
@@ -190,11 +264,11 @@ def main():
     # MODE 1: SINGLE RESUME EVALUATION
     # -----------------------------------------------------------------------------
     if mode == "Single Resume Evaluation":
-        st.subheader("📋 Step 1: Input Resume & Job Description")
+        st.subheader("📥 Input Candidates & Job Requirements")
         col_input1, col_input2 = st.columns(2)
 
         with col_input1:
-            uploaded_file = st.file_uploader("Upload Candidate Resume (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"])
+            uploaded_file = st.file_uploader("Upload Resume (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"])
             resume_text = ""
             candidate_name = "Candidate Resume"
 
@@ -203,84 +277,84 @@ def main():
                 candidate_name = uploaded_file.name
                 try:
                     resume_text = parse_resume_file(uploaded_file.name, file_bytes)
-                    st.success(f"Successfully loaded {uploaded_file.name} ({len(resume_text)} chars)")
+                    st.success(f"Loaded {uploaded_file.name} ({len(resume_text)} characters)")
                 except Exception as e:
-                    st.error(f"Error parsing resume: {e}")
+                    st.error(f"Error parsing file: {e}")
             elif st.session_state.get("sample_loaded", False):
                 resume_text = sample_resume_text
-                st.info("Loaded Preset ML Candidate Resume")
+                st.info("Preset ML Candidate Resume Loaded")
             else:
-                resume_text = st.text_area("Or paste raw resume text:", height=200, placeholder="Paste resume content...")
+                resume_text = st.text_area("Or paste raw resume text:", height=200, placeholder="Paste resume text...")
 
         with col_input2:
             if st.session_state.get("sample_loaded", False):
                 jd_text = st.text_area("Target Job Description (JD):", value=sample_jd_text, height=265)
             else:
-                jd_text = st.text_area("Paste Target Job Description (JD):", height=265, placeholder="Paste job description requirements...")
+                jd_text = st.text_area("Paste Target Job Description (JD):", height=265, placeholder="Paste job requirements...")
 
         jd_title = st.text_input("Job Role Name:", value="Machine Learning Engineer")
 
         st.markdown("---")
 
-        if st.button("🚀 Analyze ATS Compatibility Now", type="primary", use_container_width=True):
+        if st.button("✨ Run Deep AI Analysis & Match", type="primary", use_container_width=True):
             if not resume_text.strip() or not jd_text.strip():
-                st.warning("Please provide both a Resume and a Job Description to proceed.")
+                st.warning("Please provide both a Resume and a Job Description.")
                 return
 
-            with st.spinner("Processing deep learning embeddings & calculating ATS score..."):
+            with st.spinner("Executing SBERT vector embeddings & NLP taxonomy match..."):
                 results = compute_ats_score(resume_text, jd_text)
                 contact_info = extract_contact_info(resume_text)
                 recommendations = generate_recommendations(results, resume_text, contact_info)
                 save_evaluation(candidate_name, jd_title, results)
 
             # Results Section
-            st.subheader("📊 Step 2: ATS Match Score & Analytics")
+            st.subheader("⚡ Live Match Analytics & Intelligence")
 
-            # Custom Metric Cards
+            # Executive Score Cards
             m1, m2, m3, m4 = st.columns(4)
             with m1:
                 st.markdown(f"""
-                    <div class="glass-card">
-                        <div class="metric-label-text">Overall ATS Score</div>
-                        <div class="metric-value text-emerald">{results['final_ats_score']}%</div>
-                        <div style="color: #94A3B8; font-size: 0.85rem; margin-top: 4px;">Grade: <b>{results['match_grade']}</b></div>
+                    <div class="sexiest-card">
+                        <div class="card-label">Overall ATS Score</div>
+                        <div class="card-big-number grad-emerald">{results['final_ats_score']}%</div>
+                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Grade: <b>{results['match_grade']}</b></div>
                     </div>
                 """, unsafe_allow_html=True)
 
             with m2:
                 st.markdown(f"""
-                    <div class="glass-card">
-                        <div class="metric-label-text">SBERT Semantic Match</div>
-                        <div class="metric-value text-indigo">{results['semantic_similarity_pct']}%</div>
-                        <div style="color: #94A3B8; font-size: 0.85rem; margin-top: 4px;">Context Similarity</div>
+                    <div class="sexiest-card">
+                        <div class="card-label">SBERT Semantic Match</div>
+                        <div class="card-big-number grad-indigo">{results['semantic_similarity_pct']}%</div>
+                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Context Vectors</div>
                     </div>
                 """, unsafe_allow_html=True)
 
             with m3:
                 st.markdown(f"""
-                    <div class="glass-card">
-                        <div class="metric-label-text">Skill Coverage</div>
-                        <div class="metric-value text-cyan">{results['skill_coverage_pct']}%</div>
-                        <div style="color: #94A3B8; font-size: 0.85rem; margin-top: 4px;">Taxonomy Ratio</div>
+                    <div class="sexiest-card">
+                        <div class="card-label">Skill Coverage</div>
+                        <div class="card-big-number grad-cyan">{results['skill_coverage_pct']}%</div>
+                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Taxonomy Match</div>
                     </div>
                 """, unsafe_allow_html=True)
 
             with m4:
                 st.markdown(f"""
-                    <div class="glass-card">
-                        <div class="metric-label-text">TF-IDF Similarity</div>
-                        <div class="metric-value text-pink">{results['tfidf_similarity_pct']}%</div>
-                        <div style="color: #94A3B8; font-size: 0.85rem; margin-top: 4px;">Keyword Weights</div>
+                    <div class="sexiest-card">
+                        <div class="card-label">TF-IDF Similarity</div>
+                        <div class="card-big-number grad-pink">{results['tfidf_similarity_pct']}%</div>
+                        <div style="color: #9CA3AF; font-size: 0.85rem; margin-top: 8px;">Keyword Frequency</div>
                     </div>
                 """, unsafe_allow_html=True)
 
             st.write("")
 
-            # Visualizations & Skill Badges
+            # Visual Radar & Skill Badges
             col_chart, col_details = st.columns([1.3, 1])
 
             with col_chart:
-                st.markdown("### 🕸️ Skill Coverage Polar Radar")
+                st.markdown("### 🕸️ Multi-Domain Skill Radar")
                 res_cats = results["resume_skill_breakdown"]
                 jd_cats = results["jd_skill_breakdown"]
 
@@ -291,11 +365,11 @@ def main():
                 fig = go.Figure()
                 fig.add_trace(go.Scatterpolar(
                     r=res_counts, theta=categories, fill='toself', name='Candidate Resume',
-                    fillcolor='rgba(99, 102, 241, 0.3)', line=dict(color='#818CF8', width=2)
+                    fillcolor='rgba(99, 102, 241, 0.35)', line=dict(color='#818CF8', width=2.5)
                 ))
                 fig.add_trace(go.Scatterpolar(
                     r=jd_counts, theta=categories, fill='toself', name='Job Description',
-                    fillcolor='rgba(236, 72, 153, 0.2)', line=dict(color='#EC4899', width=2, dash='dash')
+                    fillcolor='rgba(236, 72, 153, 0.2)', line=dict(color='#EC4899', width=2.5, dash='dash')
                 ))
                 fig.update_layout(
                     template="plotly_dark",
@@ -309,27 +383,27 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
 
             with col_details:
-                st.markdown("### 👤 Contact Details Extracted")
+                st.markdown("### 👤 Contact Audit")
                 st.json(contact_info)
 
-                st.markdown("### 🏷️ Skill Breakdown")
+                st.markdown("### 🏷️ Skill Gap Breakdown")
                 matched = results["skill_analysis"]["matched_skills"]
                 missing = results["skill_analysis"]["missing_skills"]
 
-                st.write("**Matched Skills:**")
+                st.write("**Matched Competencies:**")
                 if matched:
-                    badges_html = "".join([f'<span class="skill-badge-match">✓ {s}</span>' for s in matched])
+                    badges_html = "".join([f'<span class="badge-matched">✓ {s}</span>' for s in matched])
                     st.markdown(badges_html, unsafe_allow_html=True)
                 else:
                     st.write("No exact skills matched.")
 
                 st.write("")
-                st.write("**Missing Critical Skills:**")
+                st.write("**Missing Critical Keywords:**")
                 if missing:
-                    badges_missing_html = "".join([f'<span class="skill-badge-missing">✗ {s}</span>' for s in missing])
+                    badges_missing_html = "".join([f'<span class="badge-missing">✗ {s}</span>' for s in missing])
                     st.markdown(badges_missing_html, unsafe_allow_html=True)
                 else:
-                    st.success("No missing critical skill gaps!")
+                    st.success("No missing critical keywords!")
 
             st.markdown("---")
             st.markdown("### 💡 AI Recommendations & ATS Formatting Audit")
@@ -351,7 +425,7 @@ def main():
         target_jd = st.text_area("Target Job Description (JD):", value=sample_jd_text if st.session_state.get("sample_loaded", False) else "", height=150)
         uploaded_files = st.file_uploader("Upload Resumes (Multiple PDF/DOCX files)", type=["pdf", "docx", "txt"], accept_multiple_files=True)
 
-        if st.button("Rank All Candidates Now", type="primary", use_container_width=True):
+        if st.button("✨ Rank All Candidates Now", type="primary", use_container_width=True):
             if not target_jd.strip() or not uploaded_files:
                 st.warning("Please provide a Job Description and at least one Resume file.")
                 return
@@ -379,12 +453,12 @@ def main():
             df_results = pd.DataFrame(results_list).sort_values(by="ATS Score (%)", ascending=False)
             df_results["Rank"] = range(1, len(df_results) + 1)
 
-            st.markdown("### 🏆 Candidate Ranking Leaderboard")
+            st.markdown("### 🏆 Candidate Leaderboard")
             st.dataframe(df_results, use_container_width=True)
 
             fig_bar = px.bar(
                 df_results, x="Candidate File", y="ATS Score (%)", color="Match Grade",
-                title="Candidate Match Comparison Score", text_auto=True, template="plotly_dark"
+                title="Candidate Match Leaderboard", text_auto=True, template="plotly_dark"
             )
             fig_bar.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
             st.plotly_chart(fig_bar, use_container_width=True)
