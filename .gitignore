@@ -13,4 +13,6 @@ test_suite.py
 PROJECT_SYNOPSIS.md
 sample_data/
 create_fresh_pptx.py
+create_classroom_pptx.py
+
 
