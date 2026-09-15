@@ -1,6 +1,7 @@
-# 🔍 HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System
-
 <div align="center">
+
+# 🔍 HireLens
+### AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
@@ -8,13 +9,16 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-HireLens_App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+<br/>
 
-> **HireLens** is an AI-powered Applicant Tracking System (ATS) and candidate evaluation platform powered by Deep Learning, Sentence-Transformers (`all-MiniLM-L6-v2`), and Natural Language Processing (NLP).
-
-🚀 Experience HireLens Live: [Click Me](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/) • [📖 Project Synopsis](PROJECT_SYNOPSIS.md) • [🐛 Report Bug](https://github.com/Aryan8182/Hirelens-ai-resume-analyzer/issues)
+[![🚀 EXPERIENCE HIRELENS LIVE](https://img.shields.io/badge/🚀_EXPERIENCE_HIRELENS_LIVE-CLICK_HERE_TO_LAUNCH_APP-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
 
 </div>
+
+> [!IMPORTANT]
+> 🌐 **LIVE WEB APPLICATION DEMO**:
+> ### 🚀 [Click Here to Launch HireLens Live Application](https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/)
+> **HireLens** is live and fully accessible in your web browser! Experience real-time SBERT semantic evaluation, multi-domain skill radar charts, and batch candidate ranking.
 
 ---
 
