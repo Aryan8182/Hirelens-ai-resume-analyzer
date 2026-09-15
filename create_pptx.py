@@ -1,5 +1,6 @@
 """
-Generate HireLens PowerPoint Presentation (16:9 Widescreen)
+Generate Comprehensive 12-Slide HireLens PowerPoint Presentation (16:9 Widescreen)
+Author: Aryan (28240533) & Nitish (28240529) - PIET
 """
 
 from pptx import Presentation
@@ -33,7 +34,7 @@ def create_deck():
 
     def add_header(slide, title_text, category_text="HIRELENS MINOR PROJECT 1"):
         # Header category tag
-        tag_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.4), Inches(11), Inches(0.4))
+        tag_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.35), Inches(11), Inches(0.35))
         tf_tag = tag_box.text_frame
         p_tag = tf_tag.paragraphs[0]
         p_tag.text = category_text.upper()
@@ -42,11 +43,11 @@ def create_deck():
         p_tag.font.color.rgb = COLOR_INDIGO
 
         # Title
-        title_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.7), Inches(11.5), Inches(0.8))
+        title_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.65), Inches(11.5), Inches(0.7))
         tf_title = title_box.text_frame
         p_title = tf_title.paragraphs[0]
         p_title.text = title_text
-        p_title.font.size = Pt(26)
+        p_title.font.size = Pt(24)
         p_title.font.bold = True
         p_title.font.color.rgb = TEXT_WHITE
 
@@ -56,15 +57,13 @@ def create_deck():
     s1 = prs.slides.add_slide(blank_layout)
     set_bg(s1)
 
-    # Big Card Container
-    card1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(1.0), Inches(1.0), Inches(11.333), Inches(5.5))
+    card1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(0.8), Inches(11.733), Inches(5.9))
     card1.fill.solid()
     card1.fill.fore_color.rgb = CARD_BG
     card1.line.color.rgb = BORDER_COLOR
     card1.line.width = Pt(2)
 
-    # Title text box
-    tb1 = s1.shapes.add_textbox(Inches(1.5), Inches(1.4), Inches(10.333), Inches(4.5))
+    tb1 = s1.shapes.add_textbox(Inches(1.2), Inches(1.1), Inches(11.0), Inches(5.3))
     tf1 = tb1.text_frame
     tf1.word_wrap = True
 
@@ -73,499 +72,542 @@ def create_deck():
     p1.font.size = Pt(44)
     p1.font.bold = True
     p1.font.color.rgb = COLOR_INDIGO
-    p1.space_after = Pt(10)
+    p1.space_after = Pt(6)
 
     p2 = tf1.add_paragraph()
     p2.text = "AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System"
     p2.font.size = Pt(22)
     p2.font.bold = True
     p2.font.color.rgb = TEXT_WHITE
-    p2.space_after = Pt(25)
+    p2.space_after = Pt(20)
 
     p3 = tf1.add_paragraph()
-    p3.text = "Minor Project 1 Presentation • Department of Artificial Intelligence & Machine Learning"
+    p3.text = "Minor Project 1 • Bachelor of Technology (B.Tech 3rd Year) in AI & ML"
     p3.font.size = Pt(14)
     p3.font.color.rgb = COLOR_CYAN
-    p3.space_after = Pt(30)
+    p3.space_after = Pt(25)
 
     p4 = tf1.add_paragraph()
-    p4.text = "👥 Project Team:  Aryan (Roll: 28240533)  |  Nitish (Roll: 28240529)\n🏛️ Institution: Panipat Institute of Engineering & Technology (PIET)"
-    p4.font.size = Pt(14)
-    p4.font.bold = True
+    p4.text = "👥 Project Team Members:\n• Aryan  (Roll No: 28240533)\n• Nitish  (Roll No: 28240529)\n\n🏛️ Institution: Panipat Institute of Engineering & Technology (PIET)\n🌐 Live Demo: https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/\n🔗 GitHub: https://github.com/Aryan8182/Hirelens-ai-resume-analyzer"
+    p4.font.size = Pt(13)
     p4.font.color.rgb = TEXT_WHITE
 
     # -------------------------------------------------------------------------
-    # SLIDE 2: INTRODUCTION & PROBLEM STATEMENT
+    # SLIDE 2: INDUSTRY CONTEXT & PROBLEM STATEMENT
     # -------------------------------------------------------------------------
     s2 = prs.slides.add_slide(blank_layout)
     set_bg(s2)
-    add_header(s2, "Introduction & Problem Statement")
+    add_header(s2, "Industry Background & Problem Statement")
 
-    # Card Left: Problem
-    c_left = s2.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(5.6), Inches(5.2))
+    # Card Left
+    c_left = s2.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(5.6), Inches(5.4))
     c_left.fill.solid()
     c_left.fill.fore_color.rgb = CARD_BG
     c_left.line.color.rgb = COLOR_PINK
     c_left.line.width = Pt(1.5)
 
-    tb_left = s2.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(5.2), Inches(4.8))
-    tf_l = tb_left.text_frame
+    tb_l = s2.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(5.2), Inches(5.0))
+    tf_l = tb_l.text_frame
     tf_l.word_wrap = True
 
     p = tf_l.paragraphs[0]
-    p.text = "⚠️ Challenges in Modern Recruitment"
-    p.font.size = Pt(18)
+    p.text = "⚠️ Limitations of Traditional ATS Software"
+    p.font.size = Pt(17)
     p.font.bold = True
     p.font.color.rgb = COLOR_PINK
-    p.space_after = Pt(14)
+    p.space_after = Pt(10)
 
-    bullets_l = [
-        "High Application Volume: Recruiters receive 250+ resumes per job posting.",
-        "Keyword Inflexibility: Traditional ATS tools use rigid exact-string matching.",
-        "False Disqualifications: Candidates writing 'Neural Networks' get 0 score if JD says 'Deep Learning'.",
-        "Lack of Transparency: Proprietary black-box algorithms provide zero explainability to job seekers."
+    pts_l = [
+        "Mass Application Overload: Recruiters receive 250+ resumes per job posting.",
+        "Rigid Keyword Matching: Traditional tools rely strictly on exact string matching.",
+        "False Negative Rejections: A candidate writing 'Neural Networks' gets 0 score if the job description asks for 'Deep Learning'.",
+        "Lack of Transparency: Proprietary black-box algorithms offer zero feedback to candidates on missing skills."
     ]
-    for b in bullets_l:
+    for pt in pts_l:
         p = tf_l.add_paragraph()
-        p.text = "• " + b
-        p.font.size = Pt(13)
+        p.text = "• " + pt
+        p.font.size = Pt(12)
         p.font.color.rgb = TEXT_MUTED
-        p.space_after = Pt(10)
+        p.space_after = Pt(8)
 
-    # Card Right: Solution
-    c_right = s2.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(6.8), Inches(1.6), Inches(5.6), Inches(5.2))
+    # Card Right
+    c_right = s2.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(6.8), Inches(1.5), Inches(5.6), Inches(5.4))
     c_right.fill.solid()
     c_right.fill.fore_color.rgb = CARD_BG
     c_right.line.color.rgb = COLOR_EMERALD
     c_right.line.width = Pt(1.5)
 
-    tb_right = s2.shapes.add_textbox(Inches(7.0), Inches(1.8), Inches(5.2), Inches(4.8))
-    tf_r = tb_right.text_frame
+    tb_r = s2.shapes.add_textbox(Inches(7.0), Inches(1.7), Inches(5.2), Inches(5.0))
+    tf_r = tb_r.text_frame
     tf_r.word_wrap = True
 
     p = tf_r.paragraphs[0]
-    p.text = "✨ The HireLens AI Solution"
-    p.font.size = Pt(18)
+    p.text = "💡 The HireLens AI Solution"
+    p.font.size = Pt(17)
     p.font.bold = True
     p.font.color.rgb = COLOR_EMERALD
-    p.space_after = Pt(14)
+    p.space_after = Pt(10)
 
-    bullets_r = [
-        "Deep Semantic Vectors: Sentence-Transformers (all-MiniLM-L6-v2) for context matching.",
-        "7-Domain NLP Taxonomy: Multi-domain technical & soft skill coverage analysis.",
-        "Hybrid ATS Scoring: Weighted fusion of SBERT, Skill Coverage, and TF-IDF similarity.",
-        "Actionable Feedback: Missing keyword detection & interactive Streamlit web dashboard."
+    pts_r = [
+        "Dense Semantic Embeddings: Uses Sentence-Transformers (all-MiniLM-L6-v2) for deep contextual meaning matching.",
+        "7-Domain NLP Taxonomy: Automatically extracts and maps hard technical and soft skill competencies.",
+        "Hybrid Weighted Scoring: Fuses SBERT (45%), Skill Coverage (35%), and TF-IDF term frequency (20%).",
+        "Explainable AI Feedback: Displays matched/missing skill gap analysis and formatting recommendations."
     ]
-    for b in bullets_r:
+    for pt in pts_r:
         p = tf_r.add_paragraph()
-        p.text = "• " + b
-        p.font.size = Pt(13)
+        p.text = "• " + pt
+        p.font.size = Pt(12)
         p.font.color.rgb = TEXT_MUTED
-        p.space_after = Pt(10)
+        p.space_after = Pt(8)
 
     # -------------------------------------------------------------------------
-    # SLIDE 3: SYSTEM ARCHITECTURE & METHODOLOGY
+    # SLIDE 3: PROJECT OBJECTIVES & CORE SCOPE
     # -------------------------------------------------------------------------
     s3 = prs.slides.add_slide(blank_layout)
     set_bg(s3)
-    add_header(s3, "System Architecture & Processing Pipeline")
+    add_header(s3, "Project Objectives & Scope of Work")
 
-    steps = [
-        ("1. Document Ingestion", "PDF & DOCX parsing via pdfplumber and python-docx text extraction engines.", COLOR_INDIGO),
-        ("2. NLP Entity Mining", "Non-capturing regex contact extractor (Phone, Email, LinkedIn, GitHub).", COLOR_CYAN),
-        ("3. Taxonomy Matching", "Categorizes candidate skills across 7 technical & soft skill domains.", COLOR_EMERALD),
-        ("4. Hybrid ATS Scoring", "Weighted fusion of SBERT (45%), Skill Coverage (35%), and TF-IDF (20%).", COLOR_PINK)
+    objs = [
+        ("1. Multi-Format Text Parser", "Extract clean text from PDF (pdfplumber) and DOCX (python-docx) files without losing structured layout data.", COLOR_INDIGO),
+        ("2. Robust Regex Contact Audit", "Extract candidate email, full 10-13 digit phone numbers (with country codes), LinkedIn, and GitHub profiles using non-capturing regex.", COLOR_CYAN),
+        ("3. SBERT Semantic Matcher", "Convert resumes and job descriptions into 384-dimensional dense vectors to measure true conceptual similarity.", COLOR_EMERALD),
+        ("4. Taxonomy & Radar Visuals", "Map skills across 7 technical categories and plot interactive polar radar charts comparing candidate vs job requirements.", COLOR_PINK)
     ]
 
-    for idx, (title, desc, color) in enumerate(steps):
+    for idx, (title, desc, color) in enumerate(objs):
         left_pos = Inches(0.8 + idx * 3.0)
-        c_step = s3.shapes.add_shape(MSO_SHAPE.RECTANGLE, left_pos, Inches(1.8), Inches(2.7), Inches(4.8))
-        c_step.fill.solid()
-        c_step.fill.fore_color.rgb = CARD_BG
-        c_step.line.color.rgb = color
-        c_step.line.width = Pt(1.5)
+        c_obj = s3.shapes.add_shape(MSO_SHAPE.RECTANGLE, left_pos, Inches(1.6), Inches(2.7), Inches(5.3))
+        c_obj.fill.solid()
+        c_obj.fill.fore_color.rgb = CARD_BG
+        c_obj.line.color.rgb = color
+        c_obj.line.width = Pt(1.5)
 
-        tb_step = s3.shapes.add_textbox(left_pos + Inches(0.15), Inches(2.0), Inches(2.4), Inches(4.4))
-        tf_s = tb_step.text_frame
-        tf_s.word_wrap = True
+        tb_obj = s3.shapes.add_textbox(left_pos + Inches(0.15), Inches(1.8), Inches(2.4), Inches(4.9))
+        tf_o = tb_obj.text_frame
+        tf_o.word_wrap = True
 
-        p = tf_s.paragraphs[0]
+        p = tf_o.paragraphs[0]
         p.text = title
-        p.font.size = Pt(16)
+        p.font.size = Pt(15)
         p.font.bold = True
         p.font.color.rgb = color
-        p.space_after = Pt(14)
+        p.space_after = Pt(12)
 
-        p2 = tf_s.add_paragraph()
+        p2 = tf_o.add_paragraph()
         p2.text = desc
-        p2.font.size = Pt(13)
+        p2.font.size = Pt(12)
         p2.font.color.rgb = TEXT_MUTED
 
     # -------------------------------------------------------------------------
-    # SLIDE 4: MATHEMATICAL ATS FORMULA & SBERT MECHANICS
+    # SLIDE 4: SYSTEM ARCHITECTURE & DATA FLOW
     # -------------------------------------------------------------------------
     s4 = prs.slides.add_slide(blank_layout)
     set_bg(s4)
-    add_header(s4, "Mathematical ATS Formula & SBERT Embeddings")
+    add_header(s4, "System Architecture & End-to-End Flow")
 
-    # Formula Card Top
-    c_f = s4.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.6), Inches(1.6))
-    c_f.fill.solid()
-    c_f.fill.fore_color.rgb = CARD_BG
-    c_f.line.color.rgb = COLOR_INDIGO
-    c_f.line.width = Pt(2)
+    pipe_card = s4.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    pipe_card.fill.solid()
+    pipe_card.fill.fore_color.rgb = CARD_BG
+    pipe_card.line.color.rgb = COLOR_INDIGO
+    pipe_card.line.width = Pt(1.5)
 
-    tb_f = s4.shapes.add_textbox(Inches(1.0), Inches(1.75), Inches(11.2), Inches(1.3))
-    tf_f = tb_f.text_frame
-    tf_f.word_wrap = True
+    tb_pipe = s4.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
+    tf_p = tb_pipe.text_frame
+    tf_p.word_wrap = True
 
-    p = tf_f.paragraphs[0]
-    p.text = "📐 Composite ATS Match Formula"
-    p.font.size = Pt(16)
+    p = tf_p.paragraphs[0]
+    p.text = "🔄 4-Stage Architectural Processing Pipeline"
+    p.font.size = Pt(18)
     p.font.bold = True
     p.font.color.rgb = COLOR_INDIGO
-    p.space_after = Pt(6)
+    p.space_after = Pt(14)
 
-    p2 = tf_f.add_paragraph()
-    p2.text = "ATS Score = (0.45 × SBERT Cosine Sim) + (0.35 × Skill Coverage Ratio) + (0.20 × TF-IDF Cosine Sim)"
+    stages = [
+        ("Stage 1: Ingestion & Parsing", "Ingests PDF/DOCX resume files and target Job Description text streams using pdfplumber and python-docx."),
+        ("Stage 2: Entity & Contact Mining", "Runs clean_text preprocessing and non-capturing regex to audit Phone (+91-7058291048), Email, LinkedIn & GitHub profiles."),
+        ("Stage 3: Hybrid AI Evaluation Engine", "Calculates SBERT vector cosine similarity (45%), 7-category Skill Taxonomy coverage (35%), and TF-IDF matrix similarity (20%)."),
+        ("Stage 4: Streamlit Dashboard & Database", "Renders composite ATS match score, Plotly radar chart, missing skill badges, AI advice, and logs record to SQLite database (ats_history.db).")
+    ]
+
+    for title, detail in stages:
+        p = tf_p.add_paragraph()
+        p.text = f"🔹 {title}"
+        p.font.size = Pt(14)
+        p.font.bold = True
+        p.font.color.rgb = COLOR_CYAN
+        p.space_after = Pt(3)
+
+        p2 = tf_p.add_paragraph()
+        p2.text = f"    {detail}"
+        p2.font.size = Pt(12)
+        p2.font.color.rgb = TEXT_MUTED
+        p2.space_after = Pt(10)
+
+    # -------------------------------------------------------------------------
+    # SLIDE 5: MATHEMATICAL ATS FORMULATION
+    # -------------------------------------------------------------------------
+    s5 = prs.slides.add_slide(blank_layout)
+    set_bg(s5)
+    add_header(s5, "Mathematical ATS Scoring Model")
+
+    # Formula Top Card
+    c_eq = s5.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(1.7))
+    c_eq.fill.solid()
+    c_eq.fill.fore_color.rgb = CARD_BG
+    c_eq.line.color.rgb = COLOR_EMERALD
+    c_eq.line.width = Pt(2)
+
+    tb_eq = s5.shapes.add_textbox(Inches(1.0), Inches(1.65), Inches(11.333), Inches(1.4))
+    tf_eq = tb_eq.text_frame
+    tf_eq.word_wrap = True
+
+    p = tf_eq.paragraphs[0]
+    p.text = "📐 Composite Match Equation"
+    p.font.size = Pt(16)
+    p.font.bold = True
+    p.font.color.rgb = COLOR_EMERALD
+    p.space_after = Pt(4)
+
+    p2 = tf_eq.add_paragraph()
+    p2.text = "ATS Match Score = (0.45 × SBERT Sim) + (0.35 × Skill Coverage Ratio) + (0.20 × TF-IDF Sim)"
     p2.font.size = Pt(18)
     p2.font.bold = True
-    p2.font.color.rgb = COLOR_EMERALD
+    p2.font.color.rgb = TEXT_WHITE
 
-    # Card Left: SBERT
-    c_sbert = s4.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(3.5), Inches(5.6), Inches(3.4))
-    c_sbert.fill.solid()
-    c_sbert.fill.fore_color.rgb = CARD_BG
-    c_sbert.line.color.rgb = COLOR_CYAN
+    # Components 3 Cards
+    comps = [
+        ("SBERT Semantic Match (45%)", "Dense 384D vector cosine similarity between Transformer embeddings u and v.", COLOR_INDIGO),
+        ("Skill Coverage Ratio (35%)", "Percentage of matched technical skills vs total required skills: (Matched / Required) × 100", COLOR_CYAN),
+        ("TF-IDF Matrix Match (20%)", "Term Frequency-Inverse Document Frequency sparse matrix cosine distance for keyword frequency.", COLOR_PINK)
+    ]
 
-    tb_sb = s4.shapes.add_textbox(Inches(1.0), Inches(3.7), Inches(5.2), Inches(3.0))
+    for idx, (title, desc, color) in enumerate(comps):
+        left_pos = Inches(0.8 + idx * 4.0)
+        c_comp = s5.shapes.add_shape(MSO_SHAPE.RECTANGLE, left_pos, Inches(3.4), Inches(3.733), Inches(3.5))
+        c_comp.fill.solid()
+        c_comp.fill.fore_color.rgb = CARD_BG
+        c_comp.line.color.rgb = color
+
+        tb_comp = s5.shapes.add_textbox(left_pos + Inches(0.15), Inches(3.6), Inches(3.4), Inches(3.1))
+        tf_c = tb_comp.text_frame
+        tf_c.word_wrap = True
+
+        p = tf_c.paragraphs[0]
+        p.text = title
+        p.font.size = Pt(15)
+        p.font.bold = True
+        p.font.color.rgb = color
+        p.space_after = Pt(10)
+
+        p2 = tf_c.add_paragraph()
+        p2.text = desc
+        p2.font.size = Pt(12)
+        p2.font.color.rgb = TEXT_MUTED
+
+    # -------------------------------------------------------------------------
+    # SLIDE 6: SENTENCE-BERT (SBERT) VECTOR MECHANICS
+    # -------------------------------------------------------------------------
+    s6 = prs.slides.add_slide(blank_layout)
+    set_bg(s6)
+    add_header(s6, "Sentence-BERT (SBERT) Vector Mechanics")
+
+    sb_card = s6.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    sb_card.fill.solid()
+    sb_card.fill.fore_color.rgb = CARD_BG
+    sb_card.line.color.rgb = COLOR_CYAN
+    sb_card.line.width = Pt(1.5)
+
+    tb_sb = s6.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
     tf_sb = tb_sb.text_frame
     tf_sb.word_wrap = True
 
     p = tf_sb.paragraphs[0]
-    p.text = "🤖 SBERT Semantic Embeddings (45%)"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_CYAN
-    p.space_after = Pt(10)
-
-    sb_points = [
-        "Model: all-MiniLM-L6-v2 (384-dimensional dense vectors).",
-        "Calculates cosine distance in deep vector space.",
-        "Understands context & synonyms (e.g. PyTorch ≈ Deep Learning)."
-    ]
-    for pt in sb_points:
-        p = tf_sb.add_paragraph()
-        p.text = "• " + pt
-        p.font.size = Pt(12)
-        p.font.color.rgb = TEXT_MUTED
-        p.space_after = Pt(6)
-
-    # Card Right: Skill & TF-IDF
-    c_tfidf = s4.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(6.8), Inches(3.5), Inches(5.6), Inches(3.4))
-    c_tfidf.fill.solid()
-    c_tfidf.fill.fore_color.rgb = CARD_BG
-    c_tfidf.line.color.rgb = COLOR_PINK
-
-    tb_tf = s4.shapes.add_textbox(Inches(7.0), Inches(3.7), Inches(5.2), Inches(3.0))
-    tf_tf = tb_tf.text_frame
-    tf_tf.word_wrap = True
-
-    p = tf_tf.paragraphs[0]
-    p.text = "📊 Skill Coverage (35%) & TF-IDF (20%)"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_PINK
-    p.space_after = Pt(10)
-
-    tf_points = [
-        "Skill Coverage: Ratio of candidate matched skills vs total required skills.",
-        "TF-IDF Vectorizer: Term Frequency-Inverse Document Frequency matrix.",
-        "Verifies exact hard-keyword frequency presence in resume."
-    ]
-    for pt in tf_points:
-        p = tf_tf.add_paragraph()
-        p.text = "• " + pt
-        p.font.size = Pt(12)
-        p.font.color.rgb = TEXT_MUTED
-        p.space_after = Pt(6)
-
-    # -------------------------------------------------------------------------
-    # SLIDE 5: MULTI-DOMAIN SKILL TAXONOMY ENGINE
-    # -------------------------------------------------------------------------
-    s5 = prs.slides.add_slide(blank_layout)
-    set_bg(s5)
-    add_header(s5, "Multi-Domain Skill Taxonomy Engine")
-
-    tax_box = s5.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.6), Inches(5.2))
-    tax_box.fill.solid()
-    tax_box.fill.fore_color.rgb = CARD_BG
-    tax_box.line.color.rgb = COLOR_INDIGO
-    tax_box.line.width = Pt(1.5)
-
-    tb_tax = s5.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(11.2), Inches(4.8))
-    tf_tax = tb_tax.text_frame
-    tf_tax.word_wrap = True
-
-    p = tf_tax.paragraphs[0]
-    p.text = "🏷️ 7 Standardized Technical & Soft Skill Categories"
+    p.text = "🧠 Deep Learning Transformer Mechanics (all-MiniLM-L6-v2)"
     p.font.size = Pt(18)
     p.font.bold = True
-    p.font.color.rgb = COLOR_INDIGO
+    p.font.color.rgb = COLOR_CYAN
     p.space_after = Pt(14)
 
-    cats = [
-        ("Programming Languages", "Python, C++, Java, JavaScript, TypeScript, Go, Rust, R, SQL, Swift"),
-        ("Machine Learning & AI", "PyTorch, TensorFlow, Scikit-Learn, OpenCV, SpaCy, HuggingFace, RAG, LLM"),
-        ("Web Development", "React, Node.js, FastAPI, Flask, Django, HTML5, CSS3, Tailwind, REST API"),
-        ("Cloud & DevOps", "AWS, Azure, GCP, Docker, Kubernetes, CI/CD, Terraform, Linux, Git, GitHub"),
-        ("Databases", "PostgreSQL, MySQL, MongoDB, Redis, SQLite, Pinecone, ChromaDB"),
-        ("Frameworks & Tools", "Pandas, NumPy, Matplotlib, Seaborn, Jupyter Notebooks, VS Code, JIRA"),
-        ("Soft Skills", "Leadership, Problem Solving, Critical Thinking, Communication, Teamwork")
+    sb_details = [
+        ("Pre-trained Transformer Backbone", "Uses Siamese BERT networks fine-tuned for semantic textual similarity (STS)."),
+        ("384-Dimensional Vector Mapping", "Converts arbitrary length resume and job description text into dense 384D mathematical vectors (u and v)."),
+        ("Cosine Vector Distance Metric", "Calculates Cosine Similarity:  cos(θ) = (u · v) / (||u|| ||v||)  yielding a value between 0.0 and 1.0."),
+        ("Contextual Awareness Advantage", "Captures conceptual intent. Recognizes that 'PyTorch / TensorFlow' is semantically aligned with 'Deep Learning Engineer' even if the phrase 'Deep Learning' is absent.")
     ]
 
-    for cat, items in cats:
-        p = tf_tax.add_paragraph()
-        p.text = f"• {cat}: {items}"
-        p.font.size = Pt(13)
-        p.font.bold = False
-        p.font.color.rgb = TEXT_WHITE
-        p.space_after = Pt(6)
+    for title, detail in sb_details:
+        p = tf_sb.add_paragraph()
+        p.text = f"🔸 {title}:"
+        p.font.size = Pt(14)
+        p.font.bold = True
+        p.font.color.rgb = COLOR_EMERALD
+        p.space_after = Pt(3)
+
+        p2 = tf_sb.add_paragraph()
+        p2.text = f"    {detail}"
+        p2.font.size = Pt(12)
+        p2.font.color.rgb = TEXT_MUTED
+        p2.space_after = Pt(10)
 
     # -------------------------------------------------------------------------
-    # SLIDE 6: STREAMLIT DASHBOARD & KEY FEATURES
-    # -------------------------------------------------------------------------
-    s6 = prs.slides.add_slide(blank_layout)
-    set_bg(s6)
-    add_header(s6, "Interactive Dashboard & Key Application Features")
-
-    f1 = s6.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(5.6), Inches(2.4))
-    f1.fill.solid()
-    f1.fill.fore_color.rgb = CARD_BG
-    f1.line.color.rgb = COLOR_CYAN
-
-    tf = f1.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    p.text = "🎯 Single Resume Evaluation"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_CYAN
-    p.space_after = Pt(6)
-    p2 = tf.add_paragraph()
-    p2.text = "Instant SBERT semantic score, match grade, skill coverage percentage, and non-capturing contact audit card."
-    p2.font.size = Pt(12)
-    p2.font.color.rgb = TEXT_MUTED
-
-    f2 = s6.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(6.8), Inches(1.6), Inches(5.6), Inches(2.4))
-    f2.fill.solid()
-    f2.fill.fore_color.rgb = CARD_BG
-    f2.line.color.rgb = COLOR_EMERALD
-
-    tf = f2.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    p.text = "🏆 Batch Candidate Leaderboard"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_EMERALD
-    p.space_after = Pt(6)
-    p2 = tf.add_paragraph()
-    p2.text = "Upload multiple PDF/DOCX resumes to rank all candidates automatically against a single job description."
-    p2.font.size = Pt(12)
-    p2.font.color.rgb = TEXT_MUTED
-
-    f3 = s6.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(4.3), Inches(5.6), Inches(2.4))
-    f3.fill.solid()
-    f3.fill.fore_color.rgb = CARD_BG
-    f3.line.color.rgb = COLOR_PINK
-
-    tf = f3.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    p.text = "🕸️ Multi-Domain Skill Radar"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_PINK
-    p.space_after = Pt(6)
-    p2 = tf.add_paragraph()
-    p2.text = "Plotly polar radar charts comparing candidate skills directly against target role requirements across 7 categories."
-    p2.font.size = Pt(12)
-    p2.font.color.rgb = TEXT_MUTED
-
-    f4 = s6.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(6.8), Inches(4.3), Inches(5.6), Inches(2.4))
-    f4.fill.solid()
-    f4.fill.fore_color.rgb = CARD_BG
-    f4.line.color.rgb = COLOR_INDIGO
-
-    tf = f4.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    p.text = "📜 SQLite Log & Clear History"
-    p.font.size = Pt(16)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_INDIGO
-    p.space_after = Pt(6)
-    p2 = tf.add_paragraph()
-    p2.text = "Automatic audit trail persistence in ats_history.db with one-click clear evaluation history button."
-    p2.font.size = Pt(12)
-    p2.font.color.rgb = TEXT_MUTED
-
-    # -------------------------------------------------------------------------
-    # SLIDE 7: EXPERIMENTAL RESULTS & DEMO METRICS
+    # SLIDE 7: 7-DOMAIN NLP SKILL TAXONOMY
     # -------------------------------------------------------------------------
     s7 = prs.slides.add_slide(blank_layout)
     set_bg(s7)
-    add_header(s7, "Experimental Evaluation & Sample Results")
+    add_header(s7, "7-Domain NLP Skill Taxonomy Engine")
 
-    res_box = s7.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.6), Inches(5.2))
-    res_box.fill.solid()
-    res_box.fill.fore_color.rgb = CARD_BG
-    res_box.line.color.rgb = COLOR_EMERALD
-    res_box.line.width = Pt(1.5)
+    tax_card = s7.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    tax_card.fill.solid()
+    tax_card.fill.fore_color.rgb = CARD_BG
+    tax_card.line.color.rgb = COLOR_INDIGO
+    tax_card.line.width = Pt(1.5)
 
-    tb_res = s7.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(11.2), Inches(4.8))
-    tf_res = tb_res.text_frame
-    tf_res.word_wrap = True
+    tb_t = s7.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
+    tf_t = tb_t.text_frame
+    tf_t.word_wrap = True
 
-    p = tf_res.paragraphs[0]
-    p.text = "📊 Sample Evaluation Output (ML Engineer Candidate)"
+    p = tf_t.paragraphs[0]
+    p.text = "🏷️ Categorized Technical & Soft Skill Competencies"
+    p.font.size = Pt(18)
+    p.font.bold = True
+    p.font.color.rgb = COLOR_INDIGO
+    p.space_after = Pt(12)
+
+    tax_cats = [
+        ("1. Programming Languages", "Python, C++, Java, JavaScript, TypeScript, Go, Rust, R, SQL, Swift"),
+        ("2. Machine Learning & AI", "PyTorch, TensorFlow, Scikit-Learn, Keras, OpenCV, SpaCy, HuggingFace, RAG, LLM"),
+        ("3. Web Development", "React, Node.js, FastAPI, Flask, Django, HTML5, CSS3, Tailwind, REST API"),
+        ("4. Cloud & DevOps", "AWS, Azure, GCP, Docker, Kubernetes, CI/CD, Terraform, Linux, Git, GitHub"),
+        ("5. Databases", "PostgreSQL, MySQL, MongoDB, Redis, SQLite, Pinecone, ChromaDB"),
+        ("6. Frameworks & Tools", "Pandas, NumPy, Matplotlib, Seaborn, Jupyter Notebooks, VS Code, JIRA"),
+        ("7. Soft Skills", "Leadership, Problem Solving, Critical Thinking, Communication, Teamwork")
+    ]
+
+    for cat_name, keywords in tax_cats:
+        p = tf_t.add_paragraph()
+        p.text = f"• {cat_name}: {keywords}"
+        p.font.size = Pt(12)
+        p.font.color.rgb = TEXT_WHITE
+        p.space_after = Pt(6)
+
+    # -------------------------------------------------------------------------
+    # SLIDE 8: NON-CAPTURING REGEX CONTACT AUDIT ENGINE
+    # -------------------------------------------------------------------------
+    s8 = prs.slides.add_slide(blank_layout)
+    set_bg(s8)
+    add_header(s8, "Non-Capturing Regex Contact Extractor")
+
+    reg_card = s8.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    reg_card.fill.solid()
+    reg_card.fill.fore_color.rgb = CARD_BG
+    reg_card.line.color.rgb = COLOR_PINK
+    reg_card.line.width = Pt(1.5)
+
+    tb_reg = s8.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
+    tf_reg = tb_reg.text_frame
+    tf_reg.word_wrap = True
+
+    p = tf_reg.paragraphs[0]
+    p.text = "📱 Solving Regex Truncation & Extracting Clean Contact Data"
+    p.font.size = Pt(18)
+    p.font.bold = True
+    p.font.color.rgb = COLOR_PINK
+    p.space_after = Pt(12)
+
+    reg_pts = [
+        ("The Truncation Challenge", "Standard re.findall() with capturing groups () returns matched tuples instead of full strings, truncating phone numbers (e.g. +91-7058291048 -> +91-705)."),
+        ("Our Solution - Non-Capturing Groups", "Implemented non-capturing regex groups (?:...) with re.finditer() to evaluate m.group(0), preserving complete 10-13 digit phone numbers."),
+        ("Email Regex Pattern", r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b  (Extracts clean email addresses)"),
+        ("Phone Regex Pattern", r"(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?)?\d{3,4}[\s.-]?\d{3,4}  (Parses full numbers with country codes)"),
+        ("LinkedIn & GitHub URLs", r"(?:https?://)?(?:www\.)?linkedin\.com/in/[a-zA-Z0-9\-_/]+  (Normalizes full profile URLs)")
+    ]
+
+    for title, desc in reg_pts:
+        p = tf_reg.add_paragraph()
+        p.text = f"• {title}:"
+        p.font.size = Pt(13)
+        p.font.bold = True
+        p.font.color.rgb = COLOR_CYAN
+        p.space_after = Pt(2)
+
+        p2 = tf_reg.add_paragraph()
+        p2.text = f"    {desc}"
+        p2.font.size = Pt(11)
+        p2.font.color.rgb = TEXT_MUTED
+        p2.space_after = Pt(8)
+
+    # -------------------------------------------------------------------------
+    # SLIDE 9: STREAMLIT DASHBOARD & SQLITE PERSISTENCE
+    # -------------------------------------------------------------------------
+    s9 = prs.slides.add_slide(blank_layout)
+    set_bg(s9)
+    add_header(s9, "Streamlit Dashboard & SQLite History Logger")
+
+    grid = [
+        ("🎯 Single Resume Evaluation", "Upload PDF/DOCX resume; computes instant SBERT match score, match grade, skill gap list, and Executive Contact Audit card.", COLOR_CYAN),
+        ("🏆 Batch Candidate Leaderboard", "Upload multiple candidate resumes to rank all applicants on an interactive leaderboard sorted by highest ATS match score.", COLOR_EMERALD),
+        ("🕸️ Plotly Polar Skill Radar", "Interactive polar radar chart comparing candidate skill distribution directly against job requirements across 7 categories.", COLOR_PINK),
+        ("📜 SQLite Audit & Reset", "Automatic persistence in ats_history.db with a 'Clear Evaluation History' button for one-click database resets.", COLOR_INDIGO)
+    ]
+
+    for idx, (title, desc, color) in enumerate(grid):
+        r = idx // 2
+        c = idx % 2
+        left_pos = Inches(0.8 + c * 6.0)
+        top_pos = Inches(1.5 + r * 2.8)
+
+        card = s9.shapes.add_shape(MSO_SHAPE.RECTANGLE, left_pos, top_pos, Inches(5.7), Inches(2.5))
+        card.fill.solid()
+        card.fill.fore_color.rgb = CARD_BG
+        card.line.color.rgb = color
+
+        tb = s9.shapes.add_textbox(left_pos + Inches(0.2), top_pos + Inches(0.2), Inches(5.3), Inches(2.1))
+        tf = tb.text_frame
+        tf.word_wrap = True
+
+        p = tf.paragraphs[0]
+        p.text = title
+        p.font.size = Pt(16)
+        p.font.bold = True
+        p.font.color.rgb = color
+        p.space_after = Pt(6)
+
+        p2 = tf.add_paragraph()
+        p2.text = desc
+        p2.font.size = Pt(12)
+        p2.font.color.rgb = TEXT_MUTED
+
+    # -------------------------------------------------------------------------
+    # SLIDE 10: FASTAPI REST MICROSERVICE
+    # -------------------------------------------------------------------------
+    s10 = prs.slides.add_slide(blank_layout)
+    set_bg(s10)
+    add_header(s10, "FastAPI REST Microservice (api.py)")
+
+    api_card = s10.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    api_card.fill.solid()
+    api_card.fill.fore_color.rgb = CARD_BG
+    api_card.line.color.rgb = COLOR_CYAN
+    api_card.line.width = Pt(1.5)
+
+    tb_a = s10.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
+    tf_a = tb_a.text_frame
+    tf_a.word_wrap = True
+
+    p = tf_a.paragraphs[0]
+    p.text = "🌐 Headless OpenAPI Endpoints & Integration"
+    p.font.size = Pt(18)
+    p.font.bold = True
+    p.font.color.rgb = COLOR_CYAN
+    p.space_after = Pt(12)
+
+    endpoints = [
+        ("GET /", "Root health-check endpoint returning service status, project name, and API documentation link."),
+        ("GET /docs", "Interactive Swagger UI documentation generated automatically by FastAPI for testing endpoints."),
+        ("POST /api/v1/parse-resume", "Accepts PDF/DOCX file upload as multipart/form-data. Returns extracted raw text, text length, and clean contact audit JSON."),
+        ("POST /api/v1/analyze-match", "Accepts JSON payload (resume_text + jd_text). Calculates composite ATS score, SBERT match, skill coverage, missing skills, logs to SQLite database, and returns structured JSON response.")
+    ]
+
+    for ep, detail in endpoints:
+        p = tf_a.add_paragraph()
+        p.text = f"• {ep}:"
+        p.font.size = Pt(14)
+        p.font.bold = True
+        p.font.color.rgb = COLOR_EMERALD
+        p.space_after = Pt(2)
+
+        p2 = tf_a.add_paragraph()
+        p2.text = f"    {detail}"
+        p2.font.size = Pt(12)
+        p2.font.color.rgb = TEXT_MUTED
+        p2.space_after = Pt(10)
+
+    # -------------------------------------------------------------------------
+    # SLIDE 11: EXPERIMENTAL RESULTS & DEMO METRICS
+    # -------------------------------------------------------------------------
+    s11 = prs.slides.add_slide(blank_layout)
+    set_bg(s11)
+    add_header(s11, "Experimental Evaluation & Sample Demonstration")
+
+    exp_card = s11.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.733), Inches(5.4))
+    exp_card.fill.solid()
+    exp_card.fill.fore_color.rgb = CARD_BG
+    exp_card.line.color.rgb = COLOR_EMERALD
+    exp_card.line.width = Pt(1.5)
+
+    tb_e = s11.shapes.add_textbox(Inches(1.0), Inches(1.7), Inches(11.333), Inches(5.0))
+    tf_e = tb_e.text_frame
+    tf_e.word_wrap = True
+
+    p = tf_e.paragraphs[0]
+    p.text = "📊 Real-World Evaluation Output (ML Engineer Role)"
     p.font.size = Pt(18)
     p.font.bold = True
     p.font.color.rgb = COLOR_EMERALD
-    p.space_after = Pt(14)
+    p.space_after = Pt(12)
 
-    metrics = [
-        ("Candidate Name", "Alex (Email: alex.dev@gmail.com | Phone: +91-7058291048)"),
-        ("Target Role", "Machine Learning Engineer"),
+    demo_data = [
+        ("Candidate Name & Contact", "Alex (Email: alex.dev@gmail.com | Phone: +91-7058291048)"),
+        ("Target Job Title", "Machine Learning Engineer"),
         ("Final Composite ATS Score", "87.5%  [Grade: Exceptional Fit]"),
-        ("SBERT Semantic Match", "84.3%  (Dense 384D Vector Cosine Sim)"),
-        ("Skill Coverage Ratio", "90.0%  (9 Matched Skills / 10 Required)"),
-        ("TF-IDF Keyword Similarity", "89.2%  (Term Frequency Matrix Cosine Sim)"),
+        ("SBERT Semantic Match", "84.3%  (Dense 384D Vector Cosine Distance)"),
+        ("Skill Coverage Ratio", "90.0%  (9 Matched Technical Skills / 10 Required)"),
+        ("TF-IDF Keyword Similarity", "89.2%  (Term Frequency Matrix Similarity)"),
         ("Matched Competencies", "Python, PyTorch, TensorFlow, Scikit-Learn, Docker, Kubernetes, AWS, Git, SQL"),
-        ("Missing Skill Alert", "MLflow (Recommended for optimization)")
+        ("Missing Skill Alert", "MLflow (Flagged by AI recommendation engine for optimization)")
     ]
 
-    for label, val in metrics:
-        p = tf_res.add_paragraph()
-        p.text = f"• {label}: {val}"
+    for label, val in demo_data:
+        p = tf_e.add_paragraph()
+        p.text = f"• {label}:  {val}"
         p.font.size = Pt(13)
         p.font.color.rgb = TEXT_WHITE
         p.space_after = Pt(6)
 
     # -------------------------------------------------------------------------
-    # SLIDE 8: FASTAPI REST MICROSERVICE
+    # SLIDE 12: FUTURE SCOPE, CONCLUSION & LIVE LINKS
     # -------------------------------------------------------------------------
-    s8 = prs.slides.add_slide(blank_layout)
-    set_bg(s8)
-    add_header(s8, "FastAPI REST Microservice Architecture")
+    s12 = prs.slides.add_slide(blank_layout)
+    set_bg(s12)
 
-    api_box = s8.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.6), Inches(5.2))
-    api_box.fill.solid()
-    api_box.fill.fore_color.rgb = CARD_BG
-    api_box.line.color.rgb = COLOR_CYAN
-    api_box.line.width = Pt(1.5)
+    card12 = s12.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(0.8), Inches(11.733), Inches(5.9))
+    card12.fill.solid()
+    card12.fill.fore_color.rgb = CARD_BG
+    card12.line.color.rgb = COLOR_EMERALD
+    card12.line.width = Pt(2)
 
-    tb_api = s8.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(11.2), Inches(4.8))
-    tf_api = tb_api.text_frame
-    tf_api.word_wrap = True
+    tb12 = s12.shapes.add_textbox(Inches(1.2), Inches(1.1), Inches(11.0), Inches(5.3))
+    tf12 = tb12.text_frame
+    tf12.word_wrap = True
 
-    p = tf_api.paragraphs[0]
-    p.text = "🌐 Headless REST API Endpoints (api.py)"
-    p.font.size = Pt(18)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_CYAN
-    p.space_after = Pt(14)
-
-    api_points = [
-        "GET / : Health check status & service metadata.",
-        "GET /docs : Interactive Swagger UI API documentation.",
-        "POST /api/v1/parse-resume : Accepts PDF/DOCX file upload, extracts raw text & non-capturing contact audit.",
-        "POST /api/v1/analyze-match : Accepts JSON payload (resume text + JD text), calculates composite ATS scores, maps skill gaps, logs to SQLite database, and returns JSON response."
-    ]
-
-    for ap in api_points:
-        p = tf_api.add_paragraph()
-        p.text = "• " + ap
-        p.font.size = Pt(14)
-        p.font.color.rgb = TEXT_WHITE
-        p.space_after = Pt(12)
-
-    # -------------------------------------------------------------------------
-    # SLIDE 9: FUTURE SCOPE & ENHANCEMENTS
-    # -------------------------------------------------------------------------
-    s9 = prs.slides.add_slide(blank_layout)
-    set_bg(s9)
-    add_header(s9, "Future Scope & System Enhancements")
-
-    fut_box = s9.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.6), Inches(5.2))
-    fut_box.fill.solid()
-    fut_box.fill.fore_color.rgb = CARD_BG
-    fut_box.line.color.rgb = COLOR_PINK
-    fut_box.line.width = Pt(1.5)
-
-    tb_fut = s9.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(11.2), Inches(4.8))
-    tf_fut = tb_fut.text_frame
-    tf_fut.word_wrap = True
-
-    p = tf_fut.paragraphs[0]
-    p.text = "🚀 Future Research & Technical Roadmap"
-    p.font.size = Pt(18)
-    p.font.bold = True
-    p.font.color.rgb = COLOR_PINK
-    p.space_after = Pt(14)
-
-    roadmap = [
-        "1. Domain Fine-Tuning: Fine-tuning SBERT models on 100k+ technical resume datasets for industry specificity.",
-        "2. LLM Bullet Optimizer: Integrating Llama-3 / Gemini models to auto-rewrite resume bullet points for high impact.",
-        "3. Auto-Formatting PDF Generator: Exporting tailored ATS-compliant PDF resumes with missing keywords added.",
-        "4. Enterprise HRMS Integration: Connectors for Workday, Greenhouse, and Lever recruiting pipelines."
-    ]
-
-    for rm in roadmap:
-        p = tf_fut.add_paragraph()
-        p.text = rm
-        p.font.size = Pt(14)
-        p.font.color.rgb = TEXT_WHITE
-        p.space_after = Pt(14)
-
-    # -------------------------------------------------------------------------
-    # SLIDE 10: CONCLUSION & THANK YOU
-    # -------------------------------------------------------------------------
-    s10 = prs.slides.add_slide(blank_layout)
-    set_bg(s10)
-
-    card10 = s10.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(1.0), Inches(1.0), Inches(11.333), Inches(5.5))
-    card10.fill.solid()
-    card10.fill.fore_color.rgb = CARD_BG
-    card10.line.color.rgb = COLOR_EMERALD
-    card10.line.width = Pt(2)
-
-    tb10 = s10.shapes.add_textbox(Inches(1.5), Inches(1.5), Inches(10.333), Inches(4.5))
-    tf10 = tb10.text_frame
-    tf10.word_wrap = True
-
-    p = tf10.paragraphs[0]
-    p.text = "🎓 Thank You!"
-    p.font.size = Pt(40)
+    p = tf12.paragraphs[0]
+    p.text = "🎓 Conclusion & Future Scope"
+    p.font.size = Pt(32)
     p.font.bold = True
     p.font.color.rgb = COLOR_EMERALD
-    p.space_after = Pt(14)
+    p.space_after = Pt(10)
 
-    p2 = tf10.add_paragraph()
-    p2.text = "HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System"
-    p2.font.size = Pt(20)
-    p2.font.bold = True
+    p2 = tf12.add_paragraph()
+    p2.text = "HireLens delivers a transparent, AI-driven ATS screening system combining Transformer semantics, skill taxonomy matching, and explainable feedback."
+    p2.font.size = Pt(14)
     p2.font.color.rgb = TEXT_WHITE
-    p2.space_after = Pt(20)
+    p2.space_after = Pt(16)
 
-    p3 = tf10.add_paragraph()
-    p3.text = "👥 Presented By: Aryan (Roll: 28240533) & Nitish (Roll: 28240529)\n🏛️ Panipat Institute of Engineering & Technology (PIET)\n🌐 GitHub: https://github.com/Aryan8182/Hirelens-ai-resume-analyzer\n🚀 Live Demo App: https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/"
-    p3.font.size = Pt(14)
-    p3.font.color.rgb = COLOR_INDIGO
+    p3 = tf12.add_paragraph()
+    p3.text = "🚀 Future Roadmap:\n• Domain Fine-Tuning SBERT on 100k+ technical IT resumes.\n• LLM Bullet Point Rewriter using Llama-3 / Gemini models.\n• Enterprise HRMS Connectors for Workday, Greenhouse & Lever."
+    p3.font.size = Pt(13)
+    p3.font.color.rgb = COLOR_CYAN
+    p3.space_after = Pt(20)
+
+    p4 = tf12.add_paragraph()
+    p4.text = "👥 Presented By: Aryan (Roll: 28240533) & Nitish (Roll: 28240529)\n🏛️ Institution: Panipat Institute of Engineering & Technology (PIET)\n🚀 Live Demo App: https://aryan8182-hirelens-ai-resume-analyzer-app-p2fpgo.streamlit.app/\n🔗 GitHub Repository: https://github.com/Aryan8182/Hirelens-ai-resume-analyzer"
+    p4.font.size = Pt(13)
+    p4.font.bold = True
+    p4.font.color.rgb = COLOR_INDIGO
 
     prs.save("HireLens_Presentation.pptx")
-    print("HireLens_Presentation.pptx successfully created!")
+    print("Comprehensive 12-Slide HireLens_Presentation.pptx successfully created!")
 
 if __name__ == "__main__":
     create_deck()
