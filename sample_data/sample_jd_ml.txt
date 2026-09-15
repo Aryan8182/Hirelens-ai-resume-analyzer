@@ -1,0 +1,21 @@
+Job Title: Machine Learning & AI Engineer
+Company: TechVision AI Labs
+Location: Remote / Bangalore
+
+Role Overview:
+We are looking for a passionate Machine Learning Engineer to design, build, and deploy intelligent AI applications. You will work on NLP pipelines, Large Language Models (LLMs), computer vision models, and production REST APIs.
+
+Key Responsibilities:
+- Develop and optimize deep learning models using PyTorch, TensorFlow, and Scikit-learn.
+- Build natural language processing (NLP) pipelines, text embeddings, and Retrieval-Augmented Generation (RAG) systems.
+- Deploy scalable ML models using FastAPI, Docker, and Kubernetes on AWS cloud infrastructure.
+- Perform exploratory data analysis and feature engineering using Pandas, NumPy, and SQL.
+- Collaborate with software engineers using Git, GitHub, and Agile methodologies.
+
+Required Technical Skills:
+- Programming: Python, SQL, C++
+- ML/DL Frameworks: TensorFlow, PyTorch, Scikit-learn, SpaCy, HuggingFace Transformers
+- AI Concepts: Deep Learning, NLP, Computer Vision, RAG, Vector Databases (ChromaDB/Pinecone)
+- Data Tools: Pandas, NumPy, OpenCV, Matplotlib
+- Cloud & DevOps: AWS, Docker, Kubernetes, Git, REST APIs
+- Soft Skills: Problem Solving, Teamwork, Critical Thinking

@@ -1,0 +1,31 @@
+ALEX R. SHARMA
+Email: alex.sharma@example.com | Phone: +91 98765 43210
+LinkedIn: linkedin.com/in/alexsharma-ai | GitHub: github.com/alexsharma-ml
+
+PROFESSIONAL SUMMARY
+Motivated 3rd Year B.Tech Student specializing in Artificial Intelligence & Machine Learning with practical experience building deep learning models, NLP pipelines, and interactive web dashboards. Proven track record of winning hackathons and delivering production-ready AI solutions.
+
+TECHNICAL SKILLS
+- Languages: Python, C++, SQL, HTML/CSS
+- Machine Learning & AI: TensorFlow, PyTorch, Scikit-learn, SpaCy, OpenCV, HuggingFace, Deep Learning, NLP, RAG
+- Data Analysis: Pandas, NumPy, Matplotlib, Seaborn, Plotly
+- Web & Tools: Streamlit, FastAPI, Flask, Docker, Git, GitHub, MySQL
+
+WORK EXPERIENCE
+AI Research Intern | Neural Tech Labs (Jun 2023 – Aug 2023)
+- Implemented sentence-transformer embeddings to improve document semantic search accuracy by 24%.
+- Developed REST API endpoints using FastAPI to serve deep learning models with low latency.
+- Containerized model training workflows using Docker for cloud deployment.
+
+PROJECTS
+AI-Powered Resume Screening & ATS Optimizer (2024)
+- Engineered an automated ATS scoring engine using SBERT embeddings and TF-IDF cosine similarity.
+- Built interactive Streamlit dashboard featuring Plotly skill radar charts and missing keyword recommendations.
+- Achieved 92% extraction accuracy across 100+ sample PDF resumes.
+
+Chest X-Ray Disease Classifier (2023)
+- Trained a Convolutional Neural Network (CNN) using PyTorch achieving 89% accuracy on 5,000 images.
+
+EDUCATION
+B.Tech in Artificial Intelligence & Machine Learning (2022 - 2026)
+GPA: 8.8 / 10.0
