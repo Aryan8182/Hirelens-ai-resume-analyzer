@@ -523,6 +523,64 @@ st.markdown("""
         transform: scale(1.06);
     }
 
+    /* Contact Audit Executive Glass Card */
+    .contact-audit-box {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1.5px solid rgba(129, 140, 248, 0.35) !important;
+        border-radius: 18px !important;
+        padding: 20px 24px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+    }
+    .contact-field-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    .contact-field-row:last-child {
+        border-bottom: none !important;
+    }
+    .contact-field-icon {
+        font-size: 1.3rem !important;
+        display: inline-block !important;
+    }
+    .contact-field-label {
+        color: #818CF8 !important;
+        font-weight: 800 !important;
+        font-size: 1rem !important;
+        min-width: 90px !important;
+    }
+    .contact-field-val {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        font-size: 0.98rem !important;
+        word-break: break-all !important;
+        background: rgba(99, 102, 241, 0.15) !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    }
+    .contact-val-missing {
+        color: #94A3B8 !important;
+        font-style: italic !important;
+        font-weight: 600 !important;
+        font-size: 0.92rem !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Streamlit JSON Tree View High Contrast Override */
+    div[data-testid="stJson"],
+    div.stJson {
+        background-color: #0F172A !important;
+        border: 1.5px solid rgba(129, 140, 248, 0.35) !important;
+        border-radius: 14px !important;
+        padding: 18px !important;
+    }
     .section-header {
         font-size: 1.4rem;
         font-weight: 800;
@@ -759,7 +817,37 @@ def main():
 
             with col_details:
                 st.markdown('<div class="section-header">👤 Contact Audit</div>', unsafe_allow_html=True)
-                st.json(contact_info)
+                
+                email_val = contact_info.get("email", "Not Found")
+                phone_val = contact_info.get("phone", "Not Found")
+                linkedin_val = contact_info.get("linkedin", "Not Found")
+                github_val = contact_info.get("github", "Not Found")
+
+                contact_card_html = f"""
+                    <div class="contact-audit-box">
+                        <div class="contact-field-row">
+                            <span class="contact-field-icon">📧</span>
+                            <span class="contact-field-label">Email:</span>
+                            <span class="{'contact-field-val' if email_val != 'Not Found' else 'contact-val-missing'}">{email_val}</span>
+                        </div>
+                        <div class="contact-field-row">
+                            <span class="contact-field-icon">📱</span>
+                            <span class="contact-field-label">Phone:</span>
+                            <span class="{'contact-field-val' if phone_val != 'Not Found' else 'contact-val-missing'}">{phone_val}</span>
+                        </div>
+                        <div class="contact-field-row">
+                            <span class="contact-field-icon">💼</span>
+                            <span class="contact-field-label">LinkedIn:</span>
+                            <span class="{'contact-field-val' if linkedin_val != 'Not Found' else 'contact-val-missing'}">{linkedin_val}</span>
+                        </div>
+                        <div class="contact-field-row">
+                            <span class="contact-field-icon">🐙</span>
+                            <span class="contact-field-label">GitHub:</span>
+                            <span class="{'contact-field-val' if github_val != 'Not Found' else 'contact-val-missing'}">{github_val}</span>
+                        </div>
+                    </div>
+                """
+                st.markdown(contact_card_html, unsafe_allow_html=True)
 
                 st.markdown('<div class="section-header">🏷️ Skill Gap Breakdown</div>', unsafe_allow_html=True)
                 matched = results["skill_analysis"]["matched_skills"]
