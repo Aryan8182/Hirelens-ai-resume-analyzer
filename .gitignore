@@ -8,5 +8,7 @@ HireLens_Viva_Defense_Notes.pdf
 create_viva_notes_pdf.py
 create_pptx.py
 headless_test.py
-
-
+api.py
+test_suite.py
+PROJECT_SYNOPSIS.md
+sample_data/
