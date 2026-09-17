@@ -3,11 +3,10 @@ import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable, Image
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfgen import canvas
-from reportlab.graphics.shapes import Drawing, Rect, String, Circle, Group, Line
 
 class NumberedCanvas(canvas.Canvas):
     def __init__(self, *args, **kwargs):
@@ -27,77 +26,58 @@ class NumberedCanvas(canvas.Canvas):
         super(NumberedCanvas, self).save()
 
     def draw_page_decorations(self, page_count):
-        # Suppress page numbers on title page (Page 1) and consent page (Page 2) if desired,
-        # but standard numbering starts on Page 3 or bottom center on all pages
         if self._pageNumber > 2:
             self.saveState()
             self.setFont("Times-Roman", 10)
             self.setFillColor(colors.black)
             footer_text = f"{self._pageNumber}"
-            self.drawCentredString(306, 36, footer_text) # Bottom center page number matching academic format
+            self.drawCentredString(306, 36, footer_text)
             self.restoreState()
 
-def create_piet_logo_drawing():
-    d = Drawing(100, 50)
-    # Green shield border
-    d.add(Rect(25, 5, 50, 40, rx=5, ry=5, fillColor=colors.HexColor("#008000"), strokeColor=colors.HexColor("#004d00"), strokeWidth=1))
-    d.add(Rect(30, 10, 40, 30, rx=3, ry=3, fillColor=colors.white, strokeColor=colors.HexColor("#008000"), strokeWidth=1))
-    d.add(String(35, 20, "P.I.E.T.", fontName="Times-Bold", fontSize=10, fillColor=colors.HexColor("#008000")))
-    return d
-
-def create_kuk_logo_drawing():
-    d = Drawing(100, 50)
-    # KUK circular seal representation
-    d.add(Circle(50, 25, 22, fillColor=colors.HexColor("#E53E3E"), strokeColor=colors.HexColor("#742A2A"), strokeWidth=1.5))
-    d.add(Circle(50, 25, 17, fillColor=colors.white, strokeColor=colors.HexColor("#E53E3E"), strokeWidth=1))
-    d.add(String(36, 22, "KUK", fontName="Times-Bold", fontSize=11, fillColor=colors.HexColor("#1A365D")))
-    return d
-
 def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
-    # Standard 1 inch margins (72pt)
     doc = SimpleDocTemplate(
         filename,
         pagesize=letter,
         leftMargin=72,
         rightMargin=72,
-        topMargin=72,
-        bottomMargin=72
+        topMargin=54,
+        bottomMargin=54
     )
     
     styles = getSampleStyleSheet()
     
-    # Typography Styles matching uploaded PDF (Times New Roman, Pure Black Text)
+    # Typography Styles
     title_main = ParagraphStyle(
         'TitleMain',
         parent=styles['Heading1'],
         fontName='Times-Bold',
-        fontSize=18,
-        leading=22,
+        fontSize=17,
+        leading=21,
         alignment=1, # Centered
         textColor=colors.black,
-        spaceAfter=12
+        spaceAfter=10
     )
 
     title_sub = ParagraphStyle(
         'TitleSub',
         parent=styles['Normal'],
         fontName='Times-Roman',
-        fontSize=14,
-        leading=18,
+        fontSize=13,
+        leading=16,
         alignment=1, # Centered
         textColor=colors.black,
-        spaceAfter=10
+        spaceAfter=6
     )
 
     title_bold_sub = ParagraphStyle(
         'TitleBoldSub',
         parent=styles['Normal'],
         fontName='Times-Bold',
-        fontSize=15,
-        leading=19,
+        fontSize=14,
+        leading=18,
         alignment=1, # Centered
         textColor=colors.black,
-        spaceAfter=10
+        spaceAfter=6
     )
 
     h1_style = ParagraphStyle(
@@ -129,7 +109,7 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
         parent=styles['Normal'],
         fontName='Times-Roman',
         fontSize=12,
-        leading=16.5, # 1.15 line spacing
+        leading=16.5,
         textColor=colors.black,
         alignment=4, # Justified
         spaceAfter=6
@@ -138,7 +118,7 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     bullet_style = ParagraphStyle(
         'BulletCustom',
         parent=body_style,
-        alignment=0, # Left aligned for bullets
+        alignment=0,
         leftIndent=18,
         firstLineIndent=-12,
         spaceAfter=4
@@ -150,7 +130,7 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     story = []
 
     # =============================================================
-    # PAGE 1: TITLE PAGE (Exact Match to Uploaded Screenshot Page 1)
+    # PAGE 1: TITLE PAGE (Fits Perfectly on 1 Single Page - Logos Removed)
     # =============================================================
     story.append(Paragraph("<b>Project Synopsis</b>", title_bold_sub))
     story.append(Paragraph("<b>on</b>", title_sub))
@@ -162,7 +142,6 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     story.append(Spacer(1, 10))
     story.append(Paragraph("<b>Submitted By</b>", title_bold_sub))
     
-    # Team Table
     team_table_data = [
         [Paragraph("Aryan", ParagraphStyle('L1', parent=cell_bold, alignment=1)), Paragraph("28240533", ParagraphStyle('L2', parent=cell_style, alignment=1))],
         [Paragraph("Nitish", ParagraphStyle('L3', parent=cell_bold, alignment=1)), Paragraph("28240529", ParagraphStyle('L4', parent=cell_style, alignment=1))]
@@ -171,34 +150,28 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     t_team.setStyle(TableStyle([
         ('ALIGN', (0,0), (-1,-1), 'CENTER'),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('TOPPADDING', (0,0), (-1,-1), 2),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 2),
+        ('TOPPADDING', (0,0), (-1,-1), 1),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1),
     ]))
     story.append(t_team)
     
-    story.append(Spacer(1, 12))
+    story.append(Spacer(1, 10))
     story.append(Paragraph("<b>Under the Supervision of</b>", title_bold_sub))
     story.append(Paragraph("<b>Prof. (Dr.) Devendra Parsad</b><br/>HOD CSE AI & ML", title_sub))
     
-    story.append(Spacer(1, 10))
-    story.append(create_piet_logo_drawing())
-    story.append(Spacer(1, 5))
-    
+    story.append(Spacer(1, 16))
     story.append(Paragraph("<b>Panipat Institute of Engineering & Technology,</b><br/><b>Samalkha, Panipat</b>", title_bold_sub))
     story.append(Paragraph("Affiliated to", title_sub))
-    story.append(create_kuk_logo_drawing())
-    story.append(Spacer(1, 5))
     story.append(Paragraph("<b>Kurukshetra University Kurukshetra, India</b><br/><b>(2025-2026)</b>", title_bold_sub))
 
     story.append(PageBreak())
 
     # =============================================================
-    # PAGE 2: SUPERVISOR CONSENT & DPEC REMARKS (Exact Match Page 2)
+    # PAGE 2: SUPERVISOR CONSENT & DPEC REMARKS
     # =============================================================
     story.append(Paragraph("<font color='#2B6CB0'>Supervisor’s Consent</font>", ParagraphStyle('BlueConsent', parent=title_main, alignment=1)))
     story.append(Spacer(1, 10))
 
-    # Consent Table Box matching Page 2 screenshot exactly
     consent_box_data = [
         [
             Paragraph(
@@ -222,7 +195,6 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     story.append(t_consent)
     story.append(Spacer(1, 20))
 
-    # DPEC Remarks Section
     story.append(Paragraph("<b>Department Project Evaluation Committee (DPEC) Remarks</b>", ParagraphStyle('DPECHdr', parent=styles['Heading2'], fontName='Times-Bold', fontSize=12, alignment=1, spaceAfter=14)))
     
     story.append(Paragraph("The project is ……………………….. by DPEC. The group is advised to submit progress of the project work in progress presentation1 to be held on……………………………………………….", body_style))
@@ -237,7 +209,7 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
     story.append(PageBreak())
 
     # =============================================================
-    # MAIN SYNOPSIS BODY (Pages 3-8 Matching Exact Format & Style)
+    # MAIN SYNOPSIS BODY (Pages 3+)
     # =============================================================
     story.append(Paragraph("<b>HireLens: AI-Powered Resume Screening, Skill Gap Analysis & Job Matching System</b>", title_main))
     story.append(Spacer(1, 10))
@@ -416,7 +388,7 @@ def build_exact_synopsis_pdf(filename="HireLens_Project_Synopsis.pdf"):
         story.append(Paragraph(rf, ParagraphStyle('RefLine', parent=body_style, leftIndent=16, firstLineIndent=-16, spaceAfter=4)))
 
     doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"Successfully generated exact formatted PDF: {filename}")
+    print(f"Successfully generated PDF synopsis (Page 1 clean): {filename}")
 
 if __name__ == "__main__":
     build_exact_synopsis_pdf()
